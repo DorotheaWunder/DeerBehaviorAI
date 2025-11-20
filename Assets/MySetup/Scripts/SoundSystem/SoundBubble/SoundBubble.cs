@@ -11,12 +11,9 @@ public class SoundBubble : MonoBehaviour
     public float Timer { get; set; }
     public float TargetRadius { get; set; }
 
-    private SphereCollider _collider;
-
     public void Initialize(SO_SoundBubble bubbleData)
     {
         _soundBubbleData = bubbleData;
-        _collider = GetComponent<SphereCollider>();
     }
 
     public void Activate(Vector3 position, float surfaceMultiplier, float movementMultiplier)
@@ -28,10 +25,7 @@ public class SoundBubble : MonoBehaviour
 
         TargetRadius = _soundBubbleData.BaseRadius * surfaceMultiplier * movementMultiplier;
 
-        if (_collider != null)
-        {
-            _collider.radius = 0f;
-        }
+        transform.localScale = Vector3.zero;
         
         gameObject.SetActive(true);
     }
@@ -39,6 +33,7 @@ public class SoundBubble : MonoBehaviour
     public void Deactivate()
     {
         IsActive = false;
+        transform.localScale = Vector3.zero;
         gameObject.SetActive(false);
     }
     
