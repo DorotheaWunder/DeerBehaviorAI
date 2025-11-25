@@ -14,5 +14,6 @@ public class SO_SurfaceProfile : ScriptableObject
     public AnimationCurve OverrideRadiusCurve;
     public bool UseOverrideCurve = false;
     
+    //multipliers for suspicion/ suspicion decay
     //array of sfx
 }
