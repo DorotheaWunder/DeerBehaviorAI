@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class SurfaceData : MonoBehaviour
 {
-    public SurfaceType SurfaceType = SurfaceType.Medium;
+    //public SurfaceType SurfaceType = SurfaceType.Medium;
+    public SO_SurfaceProfile Profile;
 }

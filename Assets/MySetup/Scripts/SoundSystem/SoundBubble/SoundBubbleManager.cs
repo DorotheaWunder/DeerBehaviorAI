@@ -7,12 +7,15 @@ public class SoundBubbleManager : MonoBehaviour
 {
     public static SoundBubbleManager InstanceSoundBubbleManager;
 
-    [SerializeField] private SO_SoundBubble _soundBubbleData;
+    [Header("Base Bubble Settings")]
+    [SerializeField] private SO_SoundBubble _baseData;
+
+    [Header("Pool")]
     [SerializeField] private GameObject _bubblePrefab;
     [SerializeField] private int _bubblePoolSize = 20;
 
-    [SerializeField]private List<SoundBubble> _bubblesTotal = new List<SoundBubble>();
-    [SerializeField]private List<SoundBubble> _bubblesActive = new List<SoundBubble>();
+    private readonly List<SoundBubble> _all = new();
+    private readonly List<SoundBubble> _active = new();
 
     private void Awake()
     {
@@ -23,72 +26,66 @@ public class SoundBubbleManager : MonoBehaviour
         }
 
         InstanceSoundBubbleManager = this;
-
-        CreateBubblePool();
+        CreatePool();
     }
 
-    public void Update()
-    {
-        UpdateActiveBubbles();
-    }
-
-    private void CreateBubblePool()
-    {
-        for (int i = 0; i < _bubblePoolSize; i++)
-        {
-            GameObject obj = Instantiate(_bubblePrefab,transform);
-            SoundBubble bubble = obj.GetComponent<SoundBubble>();
-            bubble.Initialize(_soundBubbleData);
-            obj.SetActive(false);
-            _bubblesTotal.Add(bubble);
-        }
-    }
-
-    public void TriggerBubble(Vector3 position, float surfaceMultiplier = 1f, float movementMultiplier = 1f)
-    {
-        SoundBubble bubble = GetFreeBubble();
-        if (bubble == null) return;
-        
-        bubble.Activate(position,surfaceMultiplier, movementMultiplier);
-        _bubblesActive.Add(bubble);
-    }
-
-    public void ScaleBubble(SoundBubble bubble, float deltaTime)
-    {
-        bubble.Timer += deltaTime;
-
-        float t = Mathf.Clamp01(bubble.Timer/ bubble.Data.Duration);
-        float curveValue = bubble.Data.RadiusCurve.Evaluate(t);
-        float finalRadius = curveValue * bubble.TargetRadius;
-
-        bubble.transform.localScale = Vector3.one * finalRadius;
-    }
-
-    private SoundBubble GetFreeBubble()
-    {
-        foreach (var bubble in _bubblesTotal)
-        {
-            if (!bubble.IsActive) return bubble;
-        }
-        Debug.LogWarning("SoundBubble pool exhausted!");
-        return null;
-    }
-
-    public void UpdateActiveBubbles()
+    void Update()
     {
         float dt = Time.deltaTime;
 
-        for (int  i = _bubblesActive.Count - 1; i >= 0; i--)
+        for (int i = _active.Count - 1; i >= 0; i--)
         {
-            SoundBubble bubble = _bubblesActive[i];
-            ScaleBubble(bubble, dt);
+            var bubble = _active[i];
+            bubble.UpdateBubble(dt);
 
-            if (bubble.Timer >= bubble.Data.Duration)
-            {
-                bubble.Deactivate();
-                bubble.transform.localScale = Vector3.zero;
-                _bubblesActive.Remove(bubble);
-            }
+            if (!bubble.IsActive)
+                _active.RemoveAt(i);
         }
+    }
+
+    private void CreatePool()
+    {
+        for (int i = 0; i < _bubblePoolSize; i++)
+        {
+            var obj = Instantiate(_bubblePrefab, transform);
+            var b = obj.GetComponent<SoundBubble>();
+            b.Initialize(_baseData);
+            obj.SetActive(false);
+            _all.Add(b);
+        }
+    }
+
+    private SoundBubble GetFree()
+    {
+        foreach (var b in _all)
+            if (!b.IsActive) return b;
+
+        Debug.LogWarning("Bubble pool exhausted!");
+        return null;
+    }
+
+    public void TriggerBubble(
+        Vector3 position,
+        float surfaceRadiusMult,
+        float movementMult,
+        float durationMult,
+        AnimationCurve overrideCurve = null
+    )
+    {
+        var bubble = GetFree();
+        if (bubble == null) return;
+        
+        var data = new SoundBubbleRuntimeData
+        {
+            BaseData = _baseData,
+            FinalRadius = _baseData.BaseRadius * surfaceRadiusMult * movementMult,
+            Duration = _baseData.Duration * durationMult,
+            Curve = overrideCurve != null ? overrideCurve : _baseData.RadiusCurve
+        };
+
+        bubble.ApplyRuntimeData(data);
+        bubble.Activate(position);
+
+        _active.Add(bubble);
     }
 }

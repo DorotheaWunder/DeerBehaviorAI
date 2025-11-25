@@ -5,37 +5,62 @@ using UnityEngine;
 
 public class SoundBubble : MonoBehaviour
 {
-    [SerializeField] private SO_SoundBubble _soundBubbleData;
+    private SoundBubbleRuntimeData _runtime;
 
-    public bool IsActive { get; set; }
+    public bool IsActive { get; private set; }
     public float Timer { get; set; }
-    public float TargetRadius { get; set; }
 
-    public void Initialize(SO_SoundBubble bubbleData)
+    public void Initialize(SO_SoundBubble baseData)
     {
-        _soundBubbleData = bubbleData;
+        _runtime.BaseData = baseData;
+        IsActive = false;
     }
 
-    public void Activate(Vector3 position, float surfaceMultiplier, float movementMultiplier)
+    public void ApplyRuntimeData(SoundBubbleRuntimeData data)
+    {
+        _runtime = data;
+    }
+
+    public void Activate(Vector3 position)
     {
         transform.position = position;
 
         Timer = 0f;
         IsActive = true;
 
-        TargetRadius = _soundBubbleData.BaseRadius * surfaceMultiplier * movementMultiplier;
-
         transform.localScale = Vector3.zero;
-        
         gameObject.SetActive(true);
     }
 
     public void Deactivate()
     {
         IsActive = false;
+        Timer = 0f;
         transform.localScale = Vector3.zero;
         gameObject.SetActive(false);
     }
-    
-    public SO_SoundBubble Data => _soundBubbleData;
+
+    public void UpdateBubble(float deltaTime)
+    {
+        Timer += deltaTime;
+
+        float t = Mathf.Clamp01(Timer / _runtime.Duration);
+        float curveValue = _runtime.Curve.Evaluate(t);
+        float radius = curveValue * _runtime.FinalRadius;
+
+        transform.localScale = new Vector3(radius, radius, radius);
+
+        if (Timer >= _runtime.Duration)
+            Deactivate();
+    }
+}
+
+public struct SoundBubbleRuntimeData
+{
+    public SO_SoundBubble BaseData;
+
+    public float FinalRadius;
+    public float Duration;
+    public float MovementMult;
+    public AnimationCurve Curve;
 }
