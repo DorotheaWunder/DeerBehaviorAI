@@ -1,0 +1,26 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "SightconeProfile", menuName = "DeerSystem/Sight/NewSightconeProfile")]
+public class SO_SightconeProfile : ScriptableObject
+{
+    [Header("Geometry")]
+    public float MinRange = 2f;
+    public float MaxRange = 30f;
+    public float FOV = 120f;
+
+    [Header("Falloff")]
+    public AnimationCurve DistanceFalloff = 
+        AnimationCurve.EaseInOut(0, 1, 1, 0);
+
+    [Header("Occlusion")]
+    public LayerMask BlockingMask;
+    public float BlockPenalty = 0.25f;
+
+    [Header("Sampling Settings")]
+    public int RaysPerEye = 1;
+    public float EyeSphereRadius = 0.05f;
+    
+    //color gradient?
+}

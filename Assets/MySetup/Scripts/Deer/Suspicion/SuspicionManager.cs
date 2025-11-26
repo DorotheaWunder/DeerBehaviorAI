@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[DefaultExecutionOrder(-100)]
 public class SuspicionManager : MonoBehaviour
 {
     public static SuspicionManager Instance;
@@ -20,6 +21,7 @@ public class SuspicionManager : MonoBehaviour
     
     private void Awake()
     {
+        Debug.Log("SuspicionManager Awake — EXECUTION ORDER TEST");
         if (Instance != null && Instance != this) Destroy(gameObject);
         Instance = this;
     }
