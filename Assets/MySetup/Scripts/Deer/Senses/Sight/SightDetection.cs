@@ -27,7 +27,6 @@ public class SightDetection : MonoBehaviour
         LeftEye.CheckFOV();
         RightEye.CheckFOV();
 
-        // Continuous suspicion build-up
         if (playerSeen)
         {
             DeerAI.OnPlayerSightedContinuous();

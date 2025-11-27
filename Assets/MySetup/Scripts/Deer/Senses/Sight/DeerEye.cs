@@ -32,17 +32,33 @@ public class DeerEye : MonoBehaviour
         }
 
         float angle = Vector3.Angle(transform.forward, toTarget);
-
-        if (angle < Profile.FOV * 0.5f)
+        if (angle > Profile.FOV * 0.5f)
         {
-            if (Physics.Raycast(transform.position, toTarget.normalized, out RaycastHit hit, Profile.MaxRange))
+            if (playerInside)
             {
-                if (!playerInside && hit.collider.CompareTag("Player"))
+                playerInside = false;
+                OnFOVExit?.Invoke();
+            }
+            return;
+        }
+        
+        if (Physics.Raycast(transform.position, 
+                toTarget.normalized, 
+                out RaycastHit hit, 
+                Profile.MaxRange, 
+                Profile.VisionMask))
+        {
+            if (hit.collider.CompareTag("Player"))
+            {
+                if (!playerInside)
                 {
                     playerInside = true;
                     OnFOVEnter?.Invoke();
                 }
-                else if (playerInside && !hit.collider.CompareTag("Player"))
+            }
+            else
+            {
+                if (playerInside)
                 {
                     playerInside = false;
                     OnFOVExit?.Invoke();

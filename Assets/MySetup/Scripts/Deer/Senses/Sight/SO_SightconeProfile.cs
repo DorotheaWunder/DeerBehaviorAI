@@ -15,12 +15,10 @@ public class SO_SightconeProfile : ScriptableObject
         AnimationCurve.EaseInOut(0, 1, 1, 0);
 
     [Header("Occlusion")]
-    public LayerMask BlockingMask;
-    public float BlockPenalty = 0.25f;
+    public LayerMask VisionMask;
+    public float BlockPenalty = 0.25f;//maybe have that in its own script?
 
     [Header("Sampling Settings")]
     public int RaysPerEye = 1;
     public float EyeSphereRadius = 0.05f;
-    
-    //color gradient?
 }
