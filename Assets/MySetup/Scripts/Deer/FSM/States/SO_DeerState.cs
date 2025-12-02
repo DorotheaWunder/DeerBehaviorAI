@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class SO_DeerState : ScriptableObject
-
 {
     public List<SO_StateAction> Actions = new List<SO_StateAction>();
     public List<StateTransition> Transitions = new List<StateTransition>();
