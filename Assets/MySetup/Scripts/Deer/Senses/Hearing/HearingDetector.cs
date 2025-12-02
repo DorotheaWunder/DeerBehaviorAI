@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HearingDetector : MonoBehaviour
 {
-    [SerializeField] private DeerAI _deerAI;
+    [SerializeField] private DeerSenseSuspicionManager deerSenseSuspicionManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +14,6 @@ public class HearingDetector : MonoBehaviour
         if (bubble ==null) return;
         if(!bubble.IsActive) return;
         
-        _deerAI.OnSoundHeard(bubble.transform.position);
+        deerSenseSuspicionManager.OnSoundHeard(bubble.transform.position);
     }
 }

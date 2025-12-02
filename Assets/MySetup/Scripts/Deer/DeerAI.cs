@@ -4,30 +4,16 @@ using UnityEngine;
 
 public class DeerAI : MonoBehaviour
 {
-    [Header("Hearing")]
-    public float HearingSuspicion = 5f;
-    public float CooldownAfterHearing = 1f;
+    [Header("References")]
+    public GameObject Player;
+    public DeerFSM FSM;
+    public DeerSenseSuspicionManager Senses;
     
-    [Header("Sight")]
-    public float SightSuspicion = 1f;
-    public float CooldownAfterSighted = 1f;
-    
-    public void OnSoundHeard(Vector3 sourcePosition)
-    {
-        Debug.Log("Deer heard sound at: " + sourcePosition);
-        SuspicionManager.Instance.AddSuspicion(amount: HearingSuspicion, miniCooldown: CooldownAfterHearing);
-    }
+    public float TotalSuspicion => Senses.GetTotalSuspicion();
 
-    public void OnPlayerSighted()
+    private void Awake()
     {
-        Debug.Log("Player initially sighted");
-    }
-    
-    public void OnPlayerSightedContinuous()
-    {
-        SuspicionManager.Instance.AddSuspicion(
-            amount: SightSuspicion * Time.deltaTime,
-            miniCooldown: CooldownAfterSighted
-        );
+        if (!FSM) FSM = GetComponent<DeerFSM>();
+        if (!Senses) Senses = GetComponent<DeerSenseSuspicionManager>();
     }
 }
