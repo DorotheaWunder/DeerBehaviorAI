@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c966277fd9e193b48b52839092bf6ad3, type: 3}
+  m_Name: AnimAlert
+  m_EditorClassIdentifier: 
+  EntryAnimation: {fileID: 0}
+  LoopAnimations:
+  - {fileID: 7400038, guid: 1ebd705af18b0f9429fc01c96a79a86d, type: 3}
+  ExitAnimation: {fileID: 0}

@@ -4,15 +4,16 @@ using UnityEngine;
 public class State : SO_DeerState
 {
     public string StateName;
+    public SO_AnimationSet AnimationSet;
     
     public override void EnterState(DeerFSM deerFSM)
     {
-        Debug.Log("Entering state" + StateName);
+        Debug.Log("Entering state " + StateName);
     }
 
     public override void UpdateState(DeerFSM deerFSM)
     {
-        Debug.Log("Deer is:" + StateName);
+        Debug.Log("Deer is: " + StateName);
     }
 
     public override void ExitState(DeerFSM deerFSM)

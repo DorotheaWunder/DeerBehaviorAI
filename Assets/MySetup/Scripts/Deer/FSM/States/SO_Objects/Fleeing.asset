@@ -17,3 +17,4 @@ MonoBehaviour:
   - Condition: {fileID: 11400000, guid: d7649974e92d5074db8d11aaa39d525b, type: 2}
     TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   StateName: Fleeing
+  AnimationSet: {fileID: 11400000, guid: b8845d2770c509c44bc61d072ad7ac72, type: 2}

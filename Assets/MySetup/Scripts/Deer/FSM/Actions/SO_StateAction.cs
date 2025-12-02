@@ -5,4 +5,5 @@ using UnityEngine;
 public abstract class SO_StateAction : ScriptableObject
 {
     public abstract void ExecuteAction(DeerFSM deerFSM);
+    //have overwrite animation here?
 }

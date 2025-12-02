@@ -20,3 +20,4 @@ MonoBehaviour:
   - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Alert
+  AnimationSet: {fileID: 11400000, guid: ed65ba675ef7cf046b0d11397a648c4e, type: 2}

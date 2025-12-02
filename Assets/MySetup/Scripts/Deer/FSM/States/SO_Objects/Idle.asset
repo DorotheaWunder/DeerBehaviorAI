@@ -17,3 +17,4 @@ MonoBehaviour:
   - Condition: {fileID: 11400000, guid: 28a4d0b1bb127a9448d9ff02b4f88e25, type: 2}
     TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   StateName: Idle
+  AnimationSet: {fileID: 11400000, guid: 7228a360f604a174d885b21f5a2a9172, type: 2}
