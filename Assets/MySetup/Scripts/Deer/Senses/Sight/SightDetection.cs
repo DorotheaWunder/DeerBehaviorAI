@@ -9,7 +9,7 @@ public class SightDetection : MonoBehaviour
     public DeerEye RightEye;
 
     [Header("AI Reference")]
-    public DeerAI DeerAI;
+    public DeerSenseSuspicionManager deerSenseSuspicionManager;
 
     private bool playerSeen = false;
 
@@ -29,7 +29,7 @@ public class SightDetection : MonoBehaviour
 
         if (playerSeen)
         {
-            DeerAI.OnPlayerSightedContinuous();
+            deerSenseSuspicionManager.OnPlayerSightedContinuous();
         }
     }
 
@@ -38,7 +38,7 @@ public class SightDetection : MonoBehaviour
         if (!playerSeen)
         {
             playerSeen = true;
-            DeerAI.OnPlayerSighted();
+            deerSenseSuspicionManager.OnPlayerSighted();
         }
     }
 
