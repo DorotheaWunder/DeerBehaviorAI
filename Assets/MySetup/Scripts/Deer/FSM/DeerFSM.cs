@@ -46,4 +46,10 @@ public class DeerFSM : MonoBehaviour
             OnStateChanged?.Invoke(CurrentState, previousState);
         }
     }
+    
+    public void OnNeedEvent(NeedEvent needEvent)
+    {
+        CurrentState?.OnNeedEvent(this, needEvent);
+        //trigger need state
+    }
 }

@@ -5,6 +5,7 @@ public class State : SO_DeerState
 {
     public string StateName;
     public SO_AnimationSet AnimationSet;
+    //maybe have space for need draining multiplier (needs drain faster in certain states)
     
     public override void EnterState(DeerFSM deerFSM)
     {
@@ -13,7 +14,7 @@ public class State : SO_DeerState
 
     public override void UpdateState(DeerFSM deerFSM)
     {
-        Debug.Log("Deer is: " + StateName);
+        Debug.LogWarning("Deer is: " + StateName);
     }
 
     public override void ExitState(DeerFSM deerFSM)

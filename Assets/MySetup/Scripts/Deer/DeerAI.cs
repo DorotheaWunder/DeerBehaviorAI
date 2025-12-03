@@ -8,6 +8,7 @@ public class DeerAI : MonoBehaviour
     public GameObject Player;
     public DeerFSM FSM;
     public DeerSenseSuspicionManager Senses;
+    public DeerNeedController Needs;
     
     public float TotalSuspicion => Senses.GetTotalSuspicion();
 
@@ -15,5 +16,22 @@ public class DeerAI : MonoBehaviour
     {
         if (!FSM) FSM = GetComponent<DeerFSM>();
         if (!Senses) Senses = GetComponent<DeerSenseSuspicionManager>();
+        if (!Needs) Needs = GetComponent<DeerNeedController>();
+    }
+    
+    private void OnEnable()
+    {
+        Needs.OnNeedEvent += HandleNeedEvent;
+    }
+
+    private void OnDisable()
+    {
+        Needs.OnNeedEvent -= HandleNeedEvent;
+    }
+
+    private void HandleNeedEvent(NeedEvent needEvent)
+    {
+        FSM?.OnNeedEvent(needEvent);
+        //communicate with herd manager
     }
 }
