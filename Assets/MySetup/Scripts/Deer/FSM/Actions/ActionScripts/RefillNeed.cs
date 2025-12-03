@@ -10,6 +10,6 @@ public class RefillNeed : SO_StateAction
     public override void ExecuteAction(DeerFSM deerFSM)
     {
         var need = deerFSM.DeerAI.Needs.GetNeed(NeedType);
-        
+        need.Recover(Time.deltaTime);
     }
 }
