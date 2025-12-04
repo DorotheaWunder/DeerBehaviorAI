@@ -7,6 +7,11 @@ public class State : SO_DeerState
     public SO_AnimationSet AnimationSet;
     //maybe have space for need draining multiplier (needs drain faster in certain states)
     
+    [Header("Changes Need?")]
+    public NeedbasedState NeedbasedState = NeedbasedState.None; 
+    public override NeedbasedState HerdNeed => NeedbasedState;
+
+    
     public override void EnterState(DeerFSM deerFSM)
     {
         Debug.Log("Entering state " + StateName);

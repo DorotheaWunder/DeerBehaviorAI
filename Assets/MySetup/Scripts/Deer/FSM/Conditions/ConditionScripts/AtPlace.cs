@@ -10,6 +10,6 @@ public class AtPlace : SO_StateCondition
     public override bool EvaluateCondition(DeerFSM deerFSM)
     {
         Debug.LogWarning("Deer is at " + PlaceTag);
-        return true; //for now
+        return false; //for now
     }
 }

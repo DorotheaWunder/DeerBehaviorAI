@@ -6,6 +6,7 @@ public abstract class SO_DeerState : ScriptableObject
 {
     public List<SO_StateAction> Actions = new List<SO_StateAction>();
     public List<StateTransition> Transitions = new List<StateTransition>();
+    public virtual NeedbasedState HerdNeed => NeedbasedState.None;
     
     public virtual void OnNeedEvent(DeerFSM deerFSM, NeedEvent needEvent) {}
     
