@@ -5,11 +5,22 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "DeerFSM/Conditions/AtPlace")]
 public class AtPlace : SO_StateCondition
 {
-    public string PlaceTag;
+    public string PlaceTagCompare;
     
     public override bool EvaluateCondition(DeerFSM deerFSM)
     {
-        Debug.LogWarning("Deer is at " + PlaceTag);
-        return false; //for now
+        var pois = GameObject.FindObjectsOfType<PointOfInterest>();
+
+        foreach (var poi in pois)
+        {
+            if(poi.PlaceTag != PlaceTagCompare) continue;
+
+            float sqrDistance = (deerFSM.transform.position - poi.transform.position).sqrMagnitude;
+            float sqrRadius = poi.Radius * poi.Radius;
+
+            if (sqrDistance <= sqrRadius) return true;
+        }
+
+        return false;
     }
 }
