@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Idle
   m_EditorClassIdentifier: 
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 28a4d0b1bb127a9448d9ff02b4f88e25, type: 2}
     TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
@@ -24,3 +25,4 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: 6385455ae16a44f4988f18ce17b2849c, type: 2}
   StateName: Idle
   AnimationSet: {fileID: 11400000, guid: 7228a360f604a174d885b21f5a2a9172, type: 2}
+  NeedbasedState: 0

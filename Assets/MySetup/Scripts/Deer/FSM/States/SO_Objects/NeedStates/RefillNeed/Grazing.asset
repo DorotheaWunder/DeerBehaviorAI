@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Grazing
   m_EditorClassIdentifier: 
   Actions:
+  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
   - {fileID: 11400000, guid: 7d78c0b80ebf9ba419847e614d900d27, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 7c6c44ed11f707f4a9310475ff0b4658, type: 2}
     TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
   StateName: Grazing
   AnimationSet: {fileID: 11400000, guid: 8c7902aa496a0bd418b515dfba03c5c3, type: 2}
+  NeedbasedState: 0

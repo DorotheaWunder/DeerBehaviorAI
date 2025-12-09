@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Thirsty
   m_EditorClassIdentifier: 
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: d289431f7b5acf84e83988d59632bb38, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 46d84d81f6efae44a9af53f3dbe0a919, type: 2}
     TargetState: {fileID: 11400000, guid: 858ab7e1ddb74824fae3d93d7b76c4cb, type: 2}
   StateName: Thirsty
-  AnimationSet: {fileID: 0}
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
+  NeedbasedState: 0

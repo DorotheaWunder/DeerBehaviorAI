@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Fleeing
   m_EditorClassIdentifier: 
-  Actions: []
+  Actions:
+  - {fileID: 11400000, guid: 04cd60b1a052ee5478d49726bdb3c275, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: d7649974e92d5074db8d11aaa39d525b, type: 2}
     TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   StateName: Fleeing
   AnimationSet: {fileID: 11400000, guid: b8845d2770c509c44bc61d072ad7ac72, type: 2}
+  NeedbasedState: 0

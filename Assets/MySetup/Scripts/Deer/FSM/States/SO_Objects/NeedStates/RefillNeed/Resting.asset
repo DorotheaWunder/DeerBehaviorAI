@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Resting
   m_EditorClassIdentifier: 
   Actions:
+  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
   - {fileID: 11400000, guid: 11dcbf76003a4b5448ea6dbc2cd2853e, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 45f6d1f26acef2b46b563512a1780226, type: 2}
     TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
   StateName: Resting
   AnimationSet: {fileID: 11400000, guid: 85083cd315a317c42b41bb65113ef9b8, type: 2}
+  NeedbasedState: 0
