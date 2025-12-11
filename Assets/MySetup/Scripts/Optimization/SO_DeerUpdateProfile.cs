@@ -7,7 +7,10 @@ public class SO_DeerUpdateProfile : ScriptableObject
 {
     public float UpdateMultiplierTotal = 1f;
     
-    public float FSMUpdateInterval = 0.2f;
-    public float NeedsUpdateInterval = 0.5f;
-    public float SightUpdateInterval = 0.25f;
+    [Range(0f, 1f)]
+    public float UpdateChance = 1f;
+    
+    // public float FSMUpdateInterval = 0.2f;
+    // public float NeedsUpdateInterval = 0.5f;
+    // public float SightUpdateInterval = 0.25f;
 }

@@ -11,7 +11,7 @@ public class DeerAlertSymbol : MonoBehaviour
         if (SuspicionManager.Instance != null)
         {
             SuspicionManager.Instance.OnSuspicionFull.AddListener(ActivateSymbol);
-            Debug.Log("DeerAlertSymbol subscribed");
+            //Debug.Log("DeerAlertSymbol subscribed");
         }
         else
         {

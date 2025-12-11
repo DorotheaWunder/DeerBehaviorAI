@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeerFSM : MonoBehaviour
+public class DeerFSM : MonoBehaviour, ITickable
 {
     public DeerAI DeerAI;
     public SO_DeerState CurrentState;
+    [SerializeField] private float _stateTimer = 0f;
     public event Action<SO_DeerState, SO_DeerState> OnStateChanged; //unity event instead?
     
     private void Start()
@@ -19,19 +20,40 @@ public class DeerFSM : MonoBehaviour
         }
     }
 
-    private void Update()
+    // private void Update()
+    // {
+    //     Tick(Time.deltaTime);
+    //     // if (CurrentState == null) return;
+    //     //
+    //     // CurrentState.ExecuteActions(this);
+    //     //
+    //     // CurrentState.UpdateState(this);
+    //     //
+    //     // SO_DeerState nextState = CurrentState.CheckTransitions(this);
+    //     // if (nextState != null)
+    //     //     TransitionToState(nextState);
+    // }
+
+    
+    public void Tick(float deltaTime, float distanceMultiplier = 1f)
     {
         if (CurrentState == null) return;
 
-        CurrentState.ExecuteActions(this);
+        _stateTimer += deltaTime * distanceMultiplier;
 
-        CurrentState.UpdateState(this);
+        if (_stateTimer >= CurrentState.UpdateInterval)
+        {
+            _stateTimer = 0f;
 
-        SO_DeerState nextState = CurrentState.CheckTransitions(this);
-        if (nextState != null)
-            TransitionToState(nextState);
+            CurrentState.ExecuteActions(this);
+            CurrentState.UpdateState(this);
+
+            var nextState = CurrentState.CheckTransitions(this);
+            if (nextState != null)
+                TransitionToState(nextState);
+        }
     }
-
+    
     public void TransitionToState(SO_DeerState newState)
     {
         if (CurrentState != null)

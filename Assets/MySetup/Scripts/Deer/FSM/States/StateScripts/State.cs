@@ -5,7 +5,6 @@ public class State : SO_DeerState
 {
     public string StateName;
     public SO_AnimationSet AnimationSet;
-    //maybe have space for need draining multiplier (needs drain faster in certain states)
     
     [Header("Changes Need?")]
     public NeedbasedState NeedbasedState = NeedbasedState.None; 

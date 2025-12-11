@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Drinking
   m_EditorClassIdentifier: 
+  UpdateInterval: 0.1
+  DrainMultiplier: 0
   Actions:
   - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
   - {fileID: 11400000, guid: 4417af11c64631c47b02796f71eb4ba1, type: 2}

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Thirsty
   m_EditorClassIdentifier: 
+  UpdateInterval: 0.1
+  DrainMultiplier: 0
   Actions:
   - {fileID: 11400000, guid: d289431f7b5acf84e83988d59632bb38, type: 2}
   Transitions:

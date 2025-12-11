@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: Medium
   m_EditorClassIdentifier: 
   UpdateMultiplierTotal: 3
-  FSMUpdateInterval: 0.2
-  NeedsUpdateInterval: 0.5
-  SightUpdateInterval: 0.25
+  UpdateChance: 1

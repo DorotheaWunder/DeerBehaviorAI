@@ -8,10 +8,10 @@ public class HerdUpdateManager : MonoBehaviour
     [Header("References")]
     public Transform PlayerPos;
     public HerdManager Herd;
-    
+
     [Header("Distance LODs")]
     [SerializeField] private SO_DeerUpdateProfile _currentProfile;
-    
+
     [Header("Close")]
     public SO_DeerUpdateProfile Close;
     public float CloseTreshold = 20f;
@@ -24,36 +24,80 @@ public class HerdUpdateManager : MonoBehaviour
     [Header("Very Far")]
     public SO_DeerUpdateProfile VeryFar;
     public float VeryFarTreshold = 60f;
-    
+
+    [Header("Debug")]
+    public float CurrentDistanceMultiplier = 1f;
+
     public event Action<SO_DeerUpdateProfile> OnProfileChanged;
     
+    private Transform _herdTransform;
+    private List<ITickable> _deerTickables;
+
     private void Start()
     {
+        if (Herd == null || PlayerPos == null)
+        {
+            Debug.LogError("Herd or PlayerPos not assigned!");
+            enabled = false;
+            return;
+        }
+
+        _currentProfile = Close;
+        _herdTransform = Herd.transform;
+        
+        _deerTickables = new List<ITickable>();
+        foreach (var deer in Herd.DeerList)
+        {
+            if (deer == null) continue;
+
+            var tickables = deer.GetComponents<ITickable>();
+            foreach (var tickable in tickables)
+            {
+                if (tickable != null)
+                    _deerTickables.Add(tickable);
+            }
+        }
+
         StartCoroutine(DistanceCheckRoutine());
     }
-    
+
+    private void Update()
+    {
+        float dt = Time.deltaTime;
+        Vector3 playerPos = PlayerPos.position;
+
+        foreach (var tickable in _deerTickables)
+        {
+            if (tickable is MonoBehaviour mb && !mb.gameObject.activeInHierarchy) continue;
+
+            Vector3 deerPos = (tickable as MonoBehaviour).transform.position;
+            float sqrDist = (playerPos - deerPos).sqrMagnitude;
+            var profile = DetermineUpdateProfileSqr(sqrDist);
+
+            CurrentDistanceMultiplier = profile.UpdateMultiplierTotal;
+
+            if (UnityEngine.Random.value > profile.UpdateChance) continue;
+
+            tickable.Tick(dt, profile.UpdateMultiplierTotal);
+        }
+    }
+
     private IEnumerator DistanceCheckRoutine()
     {
         while (true)
         {
-            float distance = GetDistanceToPlayer();
-            ChangeUpdateProfile(distance);
+            float sqrDistance = (_herdTransform.position - PlayerPos.position).sqrMagnitude;
+            ChangeUpdateProfileSqr(sqrDistance);
 
             float baseInterval = 0.1f;
-            float currentinterval = baseInterval * _currentProfile.UpdateMultiplierTotal;
-            yield return new WaitForSeconds(0.1f);
+            float currentInterval = baseInterval * _currentProfile.UpdateMultiplierTotal;
+            yield return new WaitForSeconds(currentInterval);
         }
     }
 
-    private float GetDistanceToPlayer()
+    private void ChangeUpdateProfileSqr(float sqrDistance)
     {
-        return Vector3.Distance(PlayerPos.position, Herd.transform.position);
-    }
-
-    private void ChangeUpdateProfile(float distance)
-    {
-        var newProfile = DetermineUpdateProfile(distance);
-
+        var newProfile = DetermineUpdateProfileSqr(sqrDistance);
         if (newProfile != _currentProfile)
         {
             _currentProfile = newProfile;
@@ -61,18 +105,16 @@ public class HerdUpdateManager : MonoBehaviour
         }
     }
 
-    private SO_DeerUpdateProfile DetermineUpdateProfile(float distance)
+    private SO_DeerUpdateProfile DetermineUpdateProfileSqr(float sqrDistance)
     {
-        if (distance < CloseTreshold) return Close;
-        if (distance < MediumTreshold) return Medium;
-        if (distance < FarTreshold) return Far;
+        if (sqrDistance < CloseTreshold * CloseTreshold) return Close;
+        if (sqrDistance < MediumTreshold * MediumTreshold) return Medium;
+        if (sqrDistance < FarTreshold * FarTreshold) return Far;
         return VeryFar;
     }
-    
+
     public SO_DeerUpdateProfile GetCurrentProfile() => _currentProfile;
-    
-    
-    // update distance gizmos
+
     private void OnDrawGizmos()
     {
         if (Herd == null) return;

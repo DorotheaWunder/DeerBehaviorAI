@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NeedType: 1
   DrainPerSecond: 0.01
-  RecoveryPerSecond: 0.05
+  RecoveryPerSecond: 0.2
   LowThreshold: 0.4
   HighThreshold: 0.9

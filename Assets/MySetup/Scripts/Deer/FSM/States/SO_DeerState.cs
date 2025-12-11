@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SO_DeerState : ScriptableObject
+public abstract class SO_DeerState : ScriptableObject 
 {
+    public float UpdateInterval = 0.1f;
+    public float DrainMultiplier = 1f;
+    
     public List<SO_StateAction> Actions = new List<SO_StateAction>();
     public List<StateTransition> Transitions = new List<StateTransition>();
     public virtual NeedbasedState HerdNeed => NeedbasedState.None;

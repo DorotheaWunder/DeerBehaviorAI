@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DeerAI : MonoBehaviour
+public class DeerAI : MonoBehaviour, ITickable
 {
     [Header("AI Navigation")] 
     public GameObject Player;
@@ -40,5 +40,13 @@ public class DeerAI : MonoBehaviour
     private void HandleNeedEvent(NeedEvent needEvent)
     {
         FSM?.OnNeedEvent(needEvent);
+    }
+
+    public void Tick(float dt, float distanceMultiplier = 1f)
+    {
+        FSM?.Tick(dt);
+        Needs?.Tick(dt);
+        //Senses?.Tick(dt);
+        //and any other updates as well
     }
 }

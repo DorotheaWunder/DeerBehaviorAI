@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Tired
   m_EditorClassIdentifier: 
-  Actions: []
+  UpdateInterval: 0.1
+  DrainMultiplier: 0
+  Actions:
+  - {fileID: 11400000, guid: c925b37035ceb8c45be601c14ad2095e, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
     TargetState: {fileID: 11400000, guid: 954557671f83b4c48a7d0949739012ad, type: 2}
   StateName: Tired
   AnimationSet: {fileID: 0}
+  NeedbasedState: 0

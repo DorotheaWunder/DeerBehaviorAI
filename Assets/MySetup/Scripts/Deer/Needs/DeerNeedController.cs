@@ -3,78 +3,108 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeerNeedController : MonoBehaviour
+public class DeerNeedController : MonoBehaviour, ITickable
 {
+    [Header("Needs")]
     public DeerNeed[] Needs;
-    
-    [Header("Random Randomizers")]//profile as SO in the future?
+
+    private Dictionary<NeedType, DeerNeed> _needsDictionary;
+    private Dictionary<NeedType, bool> _wasLow;
+    private Dictionary<NeedType, bool> _wasHigh;
+
+    [Header("Update Interval")]
+    [SerializeField] private float baseTickInterval = 0.25f;
+    private float tickTimer;
+
+    [Header("Need Randomizers")]
     public Vector2 FoodDrainRange = new Vector2(0.8f, 1.2f);
     public Vector2 FoodRecoverRange = new Vector2(0.9f, 1.1f);
-
     public Vector2 WaterDrainRange = new Vector2(0.9f, 1.3f);
     public Vector2 WaterRecoverRange = new Vector2(0.8f, 1.2f);
-
     public Vector2 StaminaDrainRange = new Vector2(0.7f, 1.4f);
     public Vector2 StaminaRecoverRange = new Vector2(1.0f, 1.3f);
-    
+
+    [Header("Debug")]
+    public float CurrentDistanceMultiplier = 1f;
+
     public event Action<NeedEvent> OnNeedEvent;
 
     private void Awake()
     {
+        _needsDictionary = new Dictionary<NeedType, DeerNeed>();
+        _wasLow = new Dictionary<NeedType, bool>();
+        _wasHigh = new Dictionary<NeedType, bool>();
+
+        var ranges = new Dictionary<NeedType, (Vector2 drain, Vector2 recover)>
+        {
+            { NeedType.Food, (FoodDrainRange, FoodRecoverRange) },
+            { NeedType.Water, (WaterDrainRange, WaterRecoverRange) },
+            { NeedType.Stamina, (StaminaDrainRange, StaminaRecoverRange) }
+        };
+
         foreach (var need in Needs)
         {
-            switch (need.NeedType)
+            if (need == null) continue;
+
+            _needsDictionary[need.NeedType] = need;
+            _wasLow[need.NeedType] = false;
+            _wasHigh[need.NeedType] = false;
+
+            if (ranges.TryGetValue(need.NeedType, out var r))
             {
-                case NeedType.Food:
-                    need.InitializeRandomizers(
-                        FoodDrainRange.x, FoodDrainRange.y,
-                        FoodRecoverRange.x, FoodRecoverRange.y);
-                    break;
-
-                case NeedType.Water:
-                    need.InitializeRandomizers(
-                        WaterDrainRange.x, WaterDrainRange.y,
-                        WaterRecoverRange.x, WaterRecoverRange.y);
-                    break;
-
-                case NeedType.Stamina:
-                    need.InitializeRandomizers(
-                        StaminaDrainRange.x, StaminaDrainRange.y,
-                        StaminaRecoverRange.x, StaminaRecoverRange.y);
-                    break;
+                need.InitializeRandomizers(r.drain.x, r.drain.y, r.recover.x, r.recover.y);
             }
         }
     }
     
-    private void Update()//use staggered update instead
+    public void Tick(float dt, float distanceMultiplier = 1f)
     {
-        float dt = Time.deltaTime;
+        CurrentDistanceMultiplier = distanceMultiplier;
+
+        tickTimer += dt;
+        float effectiveInterval = baseTickInterval * distanceMultiplier;
+        if (tickTimer < effectiveInterval) return;
+
+        float step = tickTimer;
+        tickTimer = 0f;
+        
+        float drainMultiplier = 1f;
+        if (TryGetComponent<DeerFSM>(out var fsm) && fsm.CurrentState != null)
+        {
+            drainMultiplier = fsm.CurrentState.DrainMultiplier;
+        }
+        
+        float totalMultiplier = drainMultiplier * distanceMultiplier;
 
         foreach (var need in Needs)
         {
-            need.Drain(dt);
+            if (need == null) continue;
+
+            need.Drain(step * totalMultiplier);
             CheckThresholds(need);
         }
     }
 
-    public DeerNeed GetNeed(NeedType type)//use dictionary instead
+    public DeerNeed GetNeed(NeedType type)
     {
-        foreach (var n in Needs)
-            if (n.NeedType == type)
-                return n;
-
-        return null;
+        _needsDictionary.TryGetValue(type, out var need);
+        return need;
     }
 
     private void CheckThresholds(DeerNeed need)
     {
-        if (need.BelowMarker)
+        bool isLow = need.BelowMarker;
+        bool isHigh = need.AboveMarker;
+
+        if (_wasLow.TryGetValue(need.NeedType, out bool previousLow) &&
+            _wasHigh.TryGetValue(need.NeedType, out bool previousHigh))
         {
-            BroadcastEvent(need, isLow: true, isHigh: false);
-        }
-        else if (need.AboveMarker)
-        {
-            BroadcastEvent(need, isLow: false, isHigh: true);
+            if (isLow != previousLow || isHigh != previousHigh)
+            {
+                BroadcastEvent(need, isLow, isHigh);
+                _wasLow[need.NeedType] = isLow;
+                _wasHigh[need.NeedType] = isHigh;
+            }
         }
     }
 

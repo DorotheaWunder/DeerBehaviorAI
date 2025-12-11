@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979d07c6944fd01468e86dda1ad07b03, type: 3}
   m_Name: Close
   m_EditorClassIdentifier: 
-  UpdateMultiplierTotal: 1
-  FSMUpdateInterval: 0.2
-  NeedsUpdateInterval: 0.5
-  SightUpdateInterval: 0.25
+  UpdateMultiplierTotal: 0.1
+  UpdateChance: 1
