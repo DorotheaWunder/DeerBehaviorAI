@@ -9,7 +9,7 @@ public class SightDetection : MonoBehaviour
     public DeerEye RightEye;
 
     [Header("AI Reference")]
-    public DeerSenseSuspicionManager deerSenseSuspicionManager;
+    public DeerSenseSuspicionManager DeerSenseSuspicionManager;
 
     private bool playerSeen = false;
 
@@ -22,14 +22,14 @@ public class SightDetection : MonoBehaviour
         RightEye.OnFOVExit += OnPlayerLost;
     }
 
-    private void Update()
+    private void Update()//expensive; better optimize
     {
         LeftEye.CheckFOV();
         RightEye.CheckFOV();
 
         if (playerSeen)
         {
-            deerSenseSuspicionManager.OnPlayerSightedContinuous();
+            DeerSenseSuspicionManager.OnPlayerSightedContinuous();
         }
     }
 
@@ -38,7 +38,7 @@ public class SightDetection : MonoBehaviour
         if (!playerSeen)
         {
             playerSeen = true;
-            deerSenseSuspicionManager.OnPlayerSighted();
+            DeerSenseSuspicionManager.OnPlayerSighted();
         }
     }
 

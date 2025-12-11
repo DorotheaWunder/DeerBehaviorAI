@@ -46,7 +46,7 @@ public class DeerNeedController : MonoBehaviour
         }
     }
     
-    private void Update()
+    private void Update()//use staggered update instead
     {
         float dt = Time.deltaTime;
 
@@ -57,7 +57,7 @@ public class DeerNeedController : MonoBehaviour
         }
     }
 
-    public DeerNeed GetNeed(NeedType type)
+    public DeerNeed GetNeed(NeedType type)//use dictionary instead
     {
         foreach (var n in Needs)
             if (n.NeedType == type)
