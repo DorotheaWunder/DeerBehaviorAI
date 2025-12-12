@@ -15,4 +15,5 @@ MonoBehaviour:
   EntryAnimation: {fileID: 0}
   LoopAnimations:
   - {fileID: 7400078, guid: de9fe0d01d1e94d40955c55ac0b4e5f9, type: 3}
+  - {fileID: 7400058, guid: de9fe0d01d1e94d40955c55ac0b4e5f9, type: 3}
   ExitAnimation: {fileID: 0}
