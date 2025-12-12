@@ -19,6 +19,8 @@ MonoBehaviour:
   Transitions:
   - Condition: {fileID: 11400000, guid: 46d84d81f6efae44a9af53f3dbe0a919, type: 2}
     TargetState: {fileID: 11400000, guid: 858ab7e1ddb74824fae3d93d7b76c4cb, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Thirsty
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   NeedbasedState: 0

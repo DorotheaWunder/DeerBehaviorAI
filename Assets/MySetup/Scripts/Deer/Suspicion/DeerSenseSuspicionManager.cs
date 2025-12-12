@@ -14,13 +14,13 @@ public class DeerSenseSuspicionManager : MonoBehaviour
 
     public void OnSoundHeard(Vector3 sourcePosition)
     {
-        Debug.Log("Deer heard sound at: " + sourcePosition);
+        //Debug.Log("Deer heard sound at: " + sourcePosition);
         SuspicionManager.Instance.AddSuspicion(HearingSuspicion, CooldownAfterHearing);
     }
 
     public void OnPlayerSighted()
     {
-        Debug.Log("Player initially sighted");
+        //Debug.Log("Player initially sighted");
         SuspicionManager.Instance.AddSuspicion(SightSuspicion);
     }
 

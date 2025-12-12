@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class HerdManager : MonoBehaviour
 {
+    [Header("References")]
+    public HerdStateManager StateManager;
+    public HerdCohesionManager CohesionManager;
+    //need manager later
+    
+    [Header("Deer List")]
     public List<DeerAI> DeerList = new List<DeerAI>();
     [SerializeField] private int _herdSize;
 
@@ -12,8 +18,13 @@ public class HerdManager : MonoBehaviour
     public int ThirstyDeer;
     public int TiredDeer;
     
+    
     void Start()
     {
+        //need manager later
+        CohesionManager = GetComponent<HerdCohesionManager>();
+        StateManager = GetComponent<HerdStateManager>();
+        
         DeerList.Clear();
         GetComponentsInChildren<DeerAI>(includeInactive: false, result: DeerList);
         _herdSize = DeerList.Count;

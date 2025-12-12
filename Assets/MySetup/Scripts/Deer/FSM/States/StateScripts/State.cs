@@ -13,16 +13,16 @@ public class State : SO_DeerState
     
     public override void EnterState(DeerFSM deerFSM)
     {
-        Debug.Log("Entering state " + StateName);
+        //Debug.Log("Entering state " + StateName);
     }
 
     public override void UpdateState(DeerFSM deerFSM)
     {
-        Debug.LogWarning("Deer is: " + StateName);
+        //Debug.LogWarning("Deer is: " + StateName);
     }
 
     public override void ExitState(DeerFSM deerFSM)
     {
-        Debug.Log("Exiting State: " + StateName);
+        //Debug.Log("Exiting State: " + StateName);
     }
 }

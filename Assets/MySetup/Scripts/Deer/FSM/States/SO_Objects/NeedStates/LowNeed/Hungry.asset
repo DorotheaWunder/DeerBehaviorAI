@@ -19,6 +19,8 @@ MonoBehaviour:
   Transitions:
   - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
     TargetState: {fileID: 11400000, guid: 20221a9d42ca9dc4a849f15658c16555, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Hungry
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   NeedbasedState: 0

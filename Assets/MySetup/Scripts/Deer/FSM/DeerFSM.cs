@@ -8,32 +8,30 @@ public class DeerFSM : MonoBehaviour, ITickable
     public DeerAI DeerAI;
     public SO_DeerState CurrentState;
     [SerializeField] private float _stateTimer = 0f;
-    public event Action<SO_DeerState, SO_DeerState> OnStateChanged; //unity event instead?
+    
+    [Header("Overwrite State")]
+    [SerializeField] private bool _isOverridden;
+    [SerializeField] private SO_DeerState _overwriteState;
+    [SerializeField] private SO_DeerState _initialState;
+    
+    public event Action<SO_DeerState, SO_DeerState> OnStateChanged; 
     
     private void Start()
     {
-        if (!DeerAI) DeerAI = GetComponent<DeerAI>();
         if (CurrentState != null)
         {
             CurrentState.EnterState(this);
             OnStateChanged?.Invoke(CurrentState, null);
         }
     }
+    
+    private void OnEnable()
+    {
+        if (!DeerAI) DeerAI = GetComponent<DeerAI>();
 
-    // private void Update()
-    // {
-    //     Tick(Time.deltaTime);
-    //     // if (CurrentState == null) return;
-    //     //
-    //     // CurrentState.ExecuteActions(this);
-    //     //
-    //     // CurrentState.UpdateState(this);
-    //     //
-    //     // SO_DeerState nextState = CurrentState.CheckTransitions(this);
-    //     // if (nextState != null)
-    //     //     TransitionToState(nextState);
-    // }
-
+        if (DeerAI.Herd != null && DeerAI.Herd.StateManager != null)
+            DeerAI.Herd.StateManager.OnHerdStateChanged += OnHerdStateChanged;
+    }
     
     public void Tick(float deltaTime, float distanceMultiplier = 1f)
     {
@@ -69,9 +67,64 @@ public class DeerFSM : MonoBehaviour, ITickable
         }
     }
     
+    //------------------------------------ need events
     public void OnNeedEvent(NeedEvent needEvent)
     {
         CurrentState?.OnNeedEvent(this, needEvent);
         //trigger need state
+    }
+    
+    //------------------------------------ Herdwide States
+    public void OverwriteState(SO_DeerState state)
+    {
+        if (_isOverridden) return;
+
+        _initialState = CurrentState;
+        _overwriteState = state;
+        _isOverridden = true;
+
+        TransitionToState(state);
+    }
+
+    public void ClearOverride()
+    {
+        if (!_isOverridden) return;
+
+        _isOverridden = false;
+        TransitionToState(_initialState);
+    }
+    
+    [SerializeField] private SO_DeerState FleeState;
+    // [SerializeField] private SO_DeerState MigrateMeadowState;
+    // [SerializeField] private SO_DeerState MigrateStreamState;
+    
+    private void OnHerdStateChanged(HerdState state)
+    {
+        switch (state)
+        {
+            case HerdState.Fleeing:
+                Debug.Log($"{name} OVERWRITING STATE → FleeState");
+                OverwriteState(FleeState);
+                break;
+
+            // case HerdState.MigrateMeadow:
+            //     OverwriteState(MigrateMeadowState);
+            //     break;
+            //
+            // case HerdState.MigrateStream:
+            //     OverwriteState(MigrateStreamState);
+            //     break;
+
+            case HerdState.Normal:
+                Debug.Log($"{name} CLEAR OVERRIDE → { _initialState }");
+                ClearOverride();
+                break;
+        }
+    }
+    
+    private void OnDisable()
+    {
+        if (DeerAI && DeerAI.Herd && DeerAI.Herd.StateManager != null)
+            DeerAI.Herd.StateManager.OnHerdStateChanged -= OnHerdStateChanged;
     }
 }

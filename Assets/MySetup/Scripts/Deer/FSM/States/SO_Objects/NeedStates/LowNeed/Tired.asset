@@ -19,6 +19,8 @@ MonoBehaviour:
   Transitions:
   - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
     TargetState: {fileID: 11400000, guid: 954557671f83b4c48a7d0949739012ad, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Tired
   AnimationSet: {fileID: 0}
   NeedbasedState: 0

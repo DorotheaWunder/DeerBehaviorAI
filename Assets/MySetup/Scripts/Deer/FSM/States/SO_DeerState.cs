@@ -6,6 +6,8 @@ public abstract class SO_DeerState : ScriptableObject
 {
     public float UpdateInterval = 0.1f;
     public float DrainMultiplier = 1f;
+    //maybe duration min/max?
+    
     
     public List<SO_StateAction> Actions = new List<SO_StateAction>();
     public List<StateTransition> Transitions = new List<StateTransition>();

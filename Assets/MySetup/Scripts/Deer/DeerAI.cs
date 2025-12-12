@@ -20,7 +20,6 @@ public class DeerAI : MonoBehaviour, ITickable
     private void Awake()
     {
         if (!Agent) Agent = GetComponent<NavMeshAgent>();
-        
         if (!FSM) FSM = GetComponent<DeerFSM>();
         if (!Senses) Senses = GetComponent<DeerSenseSuspicionManager>();
         if (!Needs) Needs = GetComponent<DeerNeedController>();

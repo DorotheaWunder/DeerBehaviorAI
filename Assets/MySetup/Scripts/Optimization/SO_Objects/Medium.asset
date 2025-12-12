@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 979d07c6944fd01468e86dda1ad07b03, type: 3}
   m_Name: Medium
   m_EditorClassIdentifier: 
-  UpdateMultiplierTotal: 3
+  UpdateMultiplierTotal: 1
   UpdateChance: 1

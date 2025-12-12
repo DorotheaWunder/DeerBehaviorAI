@@ -20,6 +20,8 @@ MonoBehaviour:
   Transitions:
   - Condition: {fileID: 11400000, guid: 7c6c44ed11f707f4a9310475ff0b4658, type: 2}
     TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Grazing
   AnimationSet: {fileID: 11400000, guid: 8c7902aa496a0bd418b515dfba03c5c3, type: 2}
   NeedbasedState: 0
