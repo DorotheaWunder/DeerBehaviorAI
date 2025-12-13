@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SightDetection : MonoBehaviour
+public class SightDetection : MonoBehaviour, IFreezable
 {
     [Header("Eyes")]
     public DeerEye LeftEye;
@@ -46,7 +46,30 @@ public class SightDetection : MonoBehaviour
     {
         playerSeen = false;
     }
+    
+    private void ClearTargets()
+    {
+        playerSeen = false;
 
+        if (LeftEye != null)
+            LeftEye.ClearTarget();
+
+        if (RightEye != null)
+            RightEye.ClearTarget();
+    }
+
+    // ------------------------------------------ Connection to DeerFreezer
+    public void OnFreeze()
+    {
+        ClearTargets();
+        enabled = false;
+    }
+
+    public void OnThaw()
+    {
+        enabled = true;
+    }
+    
 
     // ------------------------------------------ Gizmos
     private void OnDrawGizmos()

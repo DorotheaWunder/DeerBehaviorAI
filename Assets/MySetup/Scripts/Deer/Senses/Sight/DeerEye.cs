@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System; //use unity events instead?
+using System;
 
 public class DeerEye : MonoBehaviour
 {
@@ -73,6 +73,17 @@ public class DeerEye : MonoBehaviour
                 OnFOVExit?.Invoke();
             }
         }
+    }
+    
+    public void ClearTarget()
+    {
+        if (playerInside)
+        {
+            playerInside = false;
+            OnFOVExit?.Invoke();
+        }
+
+        Target = null;
     }
 
     public bool IsPlayerInside => playerInside;

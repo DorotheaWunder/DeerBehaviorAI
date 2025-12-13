@@ -10,7 +10,7 @@ public class MoveAway : SO_StateAction
     public float RepathDistance = 10f;
     
     
-    public override void ExecuteAction(DeerFSM deerFSM)
+    public override void ExecuteAction(DeerFSM deerFSM)//might need a nullcheck for navmesh agent
     {
         var ai = deerFSM.DeerAI;
         if(ai.Player == null || ai.Agent == null) return;

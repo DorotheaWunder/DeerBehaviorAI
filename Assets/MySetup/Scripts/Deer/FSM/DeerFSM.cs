@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeerFSM : MonoBehaviour, ITickable
+public class DeerFSM : MonoBehaviour, ITickable, IFreezable
 {
     public DeerAI DeerAI;
     public SO_DeerState CurrentState;
@@ -126,5 +126,17 @@ public class DeerFSM : MonoBehaviour, ITickable
     {
         if (DeerAI && DeerAI.Herd && DeerAI.Herd.StateManager != null)
             DeerAI.Herd.StateManager.OnHerdStateChanged -= OnHerdStateChanged;
+    }
+    
+    
+    //-------------------------------------- connection to DeerFreezer
+    public void OnFreeze()
+    {
+        enabled = false;
+    }
+
+    public void OnThaw()
+    {
+        enabled = true;
     }
 }

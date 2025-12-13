@@ -10,11 +10,15 @@ public class MoveTowards : SO_StateAction
     public override void ExecuteAction(DeerFSM deerFSM)
     {
         var ai = deerFSM.DeerAI;
-        if (ai.Agent == null) return;
+        var agent = ai.Agent;
+
+        if (agent == null || !agent.enabled || !agent.isOnNavMesh)
+            return;
 
         var target = GameObject.FindGameObjectWithTag(TargetTag);
-        if(target == null) return;
+        if (target == null)
+            return;
 
-        ai.Agent.SetDestination(target.transform.position);
+        agent.SetDestination(target.transform.position);
     }
 }

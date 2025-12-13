@@ -8,6 +8,7 @@ public class HerdUpdateManager : MonoBehaviour
     [Header("References")]
     public Transform PlayerPos;
     public HerdManager Herd;
+    
 
     [Header("Distance LODs")]
     [SerializeField] private SO_DeerUpdateProfile _currentProfile;
@@ -31,8 +32,9 @@ public class HerdUpdateManager : MonoBehaviour
     public event Action<SO_DeerUpdateProfile> OnProfileChanged;
     
     private Transform _herdTransform;
+    private List<DeerFreezer> _deerFreezers;
     private List<ITickable> _deerTickables;
-
+    
     private void Start()
     {
         if (Herd == null || PlayerPos == null)
@@ -45,7 +47,17 @@ public class HerdUpdateManager : MonoBehaviour
         _currentProfile = Close;
         _herdTransform = Herd.transform;
         
-        _deerTickables = new List<ITickable>();
+        _deerFreezers = new List<DeerFreezer>();//make own method?
+        foreach (var deer in Herd.DeerList)
+        {
+            if (deer == null) continue;
+        
+            var freezer = deer.GetComponent<DeerFreezer>();
+            if (freezer != null)
+                _deerFreezers.Add(freezer);
+        }
+        
+        _deerTickables = new List<ITickable>();//make own method?
         foreach (var deer in Herd.DeerList)
         {
             if (deer == null) continue;
@@ -57,7 +69,6 @@ public class HerdUpdateManager : MonoBehaviour
                     _deerTickables.Add(tickable);
             }
         }
-
         StartCoroutine(DistanceCheckRoutine());
     }
 
@@ -98,10 +109,20 @@ public class HerdUpdateManager : MonoBehaviour
     private void ChangeUpdateProfileSqr(float sqrDistance)
     {
         var newProfile = DetermineUpdateProfileSqr(sqrDistance);
-        if (newProfile != _currentProfile)
+        if (newProfile == _currentProfile)
+            return;
+
+        _currentProfile = newProfile;
+        OnProfileChanged?.Invoke(_currentProfile);
+
+        bool shouldFreeze = (_currentProfile == VeryFar);
+
+        foreach (var freezer in _deerFreezers)
         {
-            _currentProfile = newProfile;
-            OnProfileChanged?.Invoke(_currentProfile);
+            if (shouldFreeze)
+                freezer.Freeze();
+            else
+                freezer.Thaw();
         }
     }
 
@@ -115,6 +136,8 @@ public class HerdUpdateManager : MonoBehaviour
 
     public SO_DeerUpdateProfile GetCurrentProfile() => _currentProfile;
 
+    
+    //-------------------------------- Gizmos
     private void OnDrawGizmos()
     {
         if (Herd == null) return;

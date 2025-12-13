@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeerNeedController : MonoBehaviour, ITickable
+public class DeerNeedController : MonoBehaviour, ITickable, IFreezable
 {
     [Header("Needs")]
     public DeerNeed[] Needs;
@@ -117,5 +117,16 @@ public class DeerNeedController : MonoBehaviour, ITickable
             IsLow = isLow,
             IsHigh = isHigh
         });
+    }
+    
+    // ------------------------------------------ Connection to DeerFreezer
+    public void OnFreeze()
+    {
+        enabled = false;
+    }
+
+    public void OnThaw()
+    {
+        enabled = true;
     }
 }

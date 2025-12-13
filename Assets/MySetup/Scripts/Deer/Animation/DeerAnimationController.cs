@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeerAnimationController : MonoBehaviour
+public class DeerAnimationController : MonoBehaviour, IFreezable
 {
     [Header("Animator Reference")]
     public Animator Animator;
@@ -67,4 +67,15 @@ public class DeerAnimationController : MonoBehaviour
     }
 
     public AnimationClip CurrentLoop => _currentLoop;
+    
+    // ------------------------------------------ Connection to DeerFreezer
+    public void OnFreeze()
+    {
+        enabled = false;
+    }
+
+    public void OnThaw()
+    {
+        enabled = true;
+    }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HearingDetector : MonoBehaviour
+public class HearingDetector : MonoBehaviour, IFreezable
 {
     [SerializeField] private DeerSenseSuspicionManager deerSenseSuspicionManager;
 
@@ -15,5 +15,16 @@ public class HearingDetector : MonoBehaviour
         if(!bubble.IsActive) return;
         
         deerSenseSuspicionManager.OnSoundHeard(bubble.transform.position);
+    }
+    
+    //----------------------------------------- Connection to DeerFreezer
+    public void OnFreeze()
+    {
+        enabled = false;
+    }
+
+    public void OnThaw()
+    {
+        enabled = true;
     }
 }
