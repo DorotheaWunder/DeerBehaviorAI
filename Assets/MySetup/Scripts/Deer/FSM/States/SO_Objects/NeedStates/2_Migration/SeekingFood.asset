@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: Drinking
+  m_Name: SeekingFood
   m_EditorClassIdentifier: 
   UpdateInterval: 0.1
   DrainMultiplier: 0
   Actions:
-  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
-  - {fileID: 11400000, guid: 4417af11c64631c47b02796f71eb4ba1, type: 2}
+  - {fileID: 11400000, guid: c925b37035ceb8c45be601c14ad2095e, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: 63aa0598ae96c25498b764d2296fed94, type: 2}
-    TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
+  - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
+    TargetState: {fileID: 11400000, guid: d1171bc3f1c53624e9e23b8870c78967, type: 2}
   - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  StateName: Drinking
-  AnimationSet: {fileID: 11400000, guid: e114dca58a8bb2a449275bde878fe891, type: 2}
+  StateName: Seeking Food
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   NeedbasedState: 0

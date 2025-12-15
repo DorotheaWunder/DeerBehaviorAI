@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
+  m_Name: Full
+  m_EditorClassIdentifier: 
+  UpdateInterval: 0.1
+  DrainMultiplier: 1
+  Actions:
+  - {fileID: 11400000, guid: cf08ad05c7d4e1b49837957dd7c0ab8a, type: 2}
+  Transitions:
+  - Condition: {fileID: 11400000, guid: 7c6c44ed11f707f4a9310475ff0b4658, type: 2}
+    TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
+  StateName: Full
+  AnimationSet: {fileID: 0}
+  NeedbasedState: 0
