@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateInterval: 0.1
   DrainMultiplier: 0
-  Actions:
-  - {fileID: 11400000, guid: 356a58fe2d2dc144e989e9d85f89a2d3, type: 2}
+  Actions: []
   Transitions:
   - Condition: {fileID: 11400000, guid: 1ee8a9ee573eae741850e3fed20e24cd, type: 2}
     TargetState: {fileID: 11400000, guid: 8c01355c4053a0f40a6d6de0d3b76915, type: 2}

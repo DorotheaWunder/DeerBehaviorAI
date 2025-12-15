@@ -96,7 +96,7 @@ public class SightDetection : MonoBehaviour, IFreezable, ITickable
         if (eye == null || eye.Profile == null)
             return;
 
-        Gizmos.color = Color.yellow;
+        Gizmos.color = new Color(0.5f, 0.5f, 0f, 0.1f);
         Vector3 origin = eye.transform.position;
 
         float halfFOV = eye.Profile.FOV * 0.5f;

@@ -141,19 +141,19 @@ public class HerdUpdateManager : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (Herd == null) return;
-
+    
         Vector3 center = Herd.transform.position;
-
-        Gizmos.color = Color.red;
+    
+        Gizmos.color = new Color(1f, 0f, 0f, 0.2f);
         Gizmos.DrawWireSphere(center, CloseTreshold);
-
-        Gizmos.color = Color.yellow;
+    
+        Gizmos.color = new Color(0.6f, 0.5f, 0f, 0.2f);
         Gizmos.DrawWireSphere(center, MediumTreshold);
-
-        Gizmos.color = Color.green;
+    
+        Gizmos.color = new Color(0f, 1f, 0f, 0.2f);
         Gizmos.DrawWireSphere(center, FarTreshold);
-
-        Gizmos.color = Color.cyan;
+    
+        Gizmos.color = new Color(0f, 0.3f, 0.5f, 0.2f);
         Gizmos.DrawWireSphere(center, VeryFarTreshold);
     }
 }
