@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SightDetection : MonoBehaviour, IFreezable
+public class SightDetection : MonoBehaviour, IFreezable, ITickable
 {
     [Header("Eyes")]
     public DeerEye LeftEye;
@@ -22,7 +22,7 @@ public class SightDetection : MonoBehaviour, IFreezable
         RightEye.OnFOVExit += OnPlayerLost;
     }
 
-    private void Update()//expensive; better optimize
+    public void Tick(float dt, float distanceMultiplier = 1f)
     {
         LeftEye.CheckFOV();
         RightEye.CheckFOV();

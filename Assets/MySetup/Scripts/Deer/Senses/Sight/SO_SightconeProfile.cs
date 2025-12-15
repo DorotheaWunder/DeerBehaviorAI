@@ -9,7 +9,8 @@ public class SO_SightconeProfile : ScriptableObject
     public float MinRange = 2f;
     public float MaxRange = 30f;
     public float FOV = 120f;
-
+    [HideInInspector] public float CosHalfFOV;
+    
     [Header("Falloff")]
     public AnimationCurve DistanceFalloff = 
         AnimationCurve.EaseInOut(0, 1, 1, 0);
@@ -21,4 +22,9 @@ public class SO_SightconeProfile : ScriptableObject
     [Header("Sampling Settings")]
     public int RaysPerEye = 1;
     public float EyeSphereRadius = 0.05f;
+    
+    private void OnEnable()
+    {
+        CosHalfFOV = Mathf.Cos(FOV * 0.5f * Mathf.Deg2Rad);
+    }
 }

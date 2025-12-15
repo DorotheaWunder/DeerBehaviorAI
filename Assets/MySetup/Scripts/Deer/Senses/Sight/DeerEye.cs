@@ -19,60 +19,57 @@ public class DeerEye : MonoBehaviour
             return;
 
         Vector3 toTarget = Target.position - transform.position;
-        float distance = toTarget.magnitude;
-
-        if (distance > Profile.MaxRange)
+        float sqrDist = toTarget.sqrMagnitude;
+        
+        if (sqrDist > Profile.MaxRange * Profile.MaxRange)
         {
-            if (playerInside)
-            {
-                playerInside = false;
-                OnFOVExit?.Invoke();
-            }
-            return;
-        }
-
-        float angle = Vector3.Angle(transform.forward, toTarget);
-        if (angle > Profile.FOV * 0.5f)
-        {
-            if (playerInside)
-            {
-                playerInside = false;
-                OnFOVExit?.Invoke();
-            }
+            ExitIfNeeded();
             return;
         }
         
-        if (Physics.Raycast(transform.position, 
-                toTarget.normalized, 
-                out RaycastHit hit, 
-                Profile.MaxRange, 
+        Vector3 dir = toTarget.normalized;
+        float dot = Vector3.Dot(transform.forward, dir);
+
+        if (dot < Profile.CosHalfFOV)
+        {
+            ExitIfNeeded();
+            return;
+        }
+        
+        if (Physics.Raycast(
+                transform.position,
+                dir,
+                out RaycastHit hit,
+                Profile.MaxRange,
                 Profile.VisionMask))
         {
             if (hit.collider.CompareTag("Player"))
             {
-                if (!playerInside)
-                {
-                    playerInside = true;
-                    OnFOVEnter?.Invoke();
-                }
+                EnterIfNeeded();
             }
             else
             {
-                if (playerInside)
-                {
-                    playerInside = false;
-                    OnFOVExit?.Invoke();
-                }
+                ExitIfNeeded();
             }
         }
         else
         {
-            if (playerInside)
-            {
-                playerInside = false;
-                OnFOVExit?.Invoke();
-            }
+            ExitIfNeeded();
         }
+    }
+    
+    private void EnterIfNeeded()
+    {
+        if (playerInside) return;
+        playerInside = true;
+        OnFOVEnter?.Invoke();
+    }
+
+    private void ExitIfNeeded()
+    {
+        if (!playerInside) return;
+        playerInside = false;
+        OnFOVExit?.Invoke();
     }
     
     public void ClearTarget()
