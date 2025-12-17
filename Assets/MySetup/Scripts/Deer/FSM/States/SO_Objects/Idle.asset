@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Idle
   m_EditorClassIdentifier: 
+  MinDuration: 1
+  MaxDuration: 1
   UpdateInterval: 2.5
+  MinTransitionTime: 0.01
+  MaxTransitionTime: 0.7
   DrainMultiplier: 1
   Actions:
+  - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
   - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
+  - {fileID: 11400000, guid: a71c9a6c21c2a69459ed5abaaa5fa811, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 28a4d0b1bb127a9448d9ff02b4f88e25, type: 2}
     TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}

@@ -5,82 +5,111 @@ using UnityEngine;
 
 public class DeerFSM : MonoBehaviour, ITickable, IFreezable
 {
+    [Header("References")]
     public DeerAI DeerAI;
+
+    [Header("State")]
     public SO_DeerState CurrentState;
-    [SerializeField] private float _stateTimer = 0f;
-    
-    [Header("Overwrite State")]
+    [SerializeField] private float _stateTimer;
+    [SerializeField] private float _timeInState;
+    [SerializeField] private float _currentStateDuration;
+    [SerializeField] private float _timeUntilNextTransition;
+
+    [Header("Override (Herd / Emergency)")]
     [SerializeField] private bool _isOverridden;
-    [SerializeField] private SO_DeerState _overwriteState;
-    [SerializeField] private SO_DeerState _initialState;
-    
-    public event Action<SO_DeerState, SO_DeerState> OnStateChanged; 
-    
-    private void Start()
-    {
-        if (CurrentState != null)
-        {
-            CurrentState.EnterState(this);
-            OnStateChanged?.Invoke(CurrentState, null);
-        }
-    }
-    
+    [SerializeField] private SO_DeerState _returnState;
+
+    public event Action<SO_DeerState, SO_DeerState> OnStateChanged;
+
+    [Header("Herd States")]
+    [SerializeField] private SO_DeerState FleeState;
+
     private void OnEnable()
     {
         if (!DeerAI) DeerAI = GetComponent<DeerAI>();
-
-        if (DeerAI.Herd != null && DeerAI.Herd.StateManager != null)
+        if (DeerAI?.Herd?.StateManager != null)
             DeerAI.Herd.StateManager.OnHerdStateChanged += OnHerdStateChanged;
     }
-    
+
+    private void Start()
+    {
+        if (CurrentState == null)
+            return;
+
+        InitializeState(CurrentState, null);
+    }
+
+    private void OnDisable()
+    {
+        if (DeerAI?.Herd?.StateManager != null)
+            DeerAI.Herd.StateManager.OnHerdStateChanged -= OnHerdStateChanged;
+    }
+
     public void Tick(float deltaTime, float distanceMultiplier = 1f)
     {
-        if (CurrentState == null) return;
+        if (CurrentState == null)
+            return;
 
         _stateTimer += deltaTime * distanceMultiplier;
+        _timeInState += deltaTime * distanceMultiplier;
 
         if (_stateTimer >= CurrentState.UpdateInterval)
         {
             _stateTimer = 0f;
-
             CurrentState.ExecuteActions(this);
             CurrentState.UpdateState(this);
-
-            var nextState = CurrentState.CheckTransitions(this);
-            if (nextState != null)
-                TransitionToState(nextState);
         }
+
+        if (_isOverridden)
+            return;
+
+        if (_timeInState < _currentStateDuration)
+            return;
+
+        if (_timeUntilNextTransition > 0f)
+        {
+            _timeUntilNextTransition -= deltaTime * distanceMultiplier;
+            return;
+        }
+
+        SO_DeerState nextState = CurrentState.CheckTransitions(this);
+        if (nextState != null)
+            TransitionToState(nextState);
     }
-    
+
     public void TransitionToState(SO_DeerState newState)
     {
-        if (CurrentState != null)
-            CurrentState.ExitState(this);
+        if (newState == null || newState == CurrentState)
+            return;
 
-        var previousState = CurrentState;
-        CurrentState = newState;
+        SO_DeerState previousState = CurrentState;
 
-        if (CurrentState != null)
-        {
-            CurrentState.EnterState(this);
-            OnStateChanged?.Invoke(CurrentState, previousState);
-        }
+        CurrentState?.ExitState(this);
+
+        InitializeState(newState, previousState);
     }
-    
-    //------------------------------------ need events
-    public void OnNeedEvent(NeedEvent needEvent)
+
+    private void InitializeState(SO_DeerState state, SO_DeerState previousState)
     {
-        CurrentState?.OnNeedEvent(this, needEvent);
-        //trigger need state
+        CurrentState = state;
+        _stateTimer = 0f;
+        _timeInState = 0f;
+
+        _currentStateDuration = UnityEngine.Random.Range(state.MinDuration, state.MaxDuration);
+        _timeUntilNextTransition = UnityEngine.Random.Range(state.MinTransitionTime, state.MaxTransitionTime);
+
+        state.EnterState(this);
+
+        OnStateChanged?.Invoke(CurrentState, previousState);
     }
-    
-    //------------------------------------ Herdwide States
+
+    //------------------------------------------ Overwriting
     public void OverwriteState(SO_DeerState state)
     {
-        if (_isOverridden) return;
+        if (_isOverridden || state == null || CurrentState == state)
+            return;
 
-        _initialState = CurrentState;
-        _overwriteState = state;
+        _returnState = CurrentState;
         _isOverridden = true;
 
         TransitionToState(state);
@@ -88,55 +117,40 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
 
     public void ClearOverride()
     {
-        if (!_isOverridden) return;
+        if (!_isOverridden)
+            return;
 
         _isOverridden = false;
-        TransitionToState(_initialState);
+
+        if (_returnState != null)
+        {
+            TransitionToState(_returnState);
+            _returnState = null;
+        }
     }
-    
-    [SerializeField] private SO_DeerState FleeState;
-    // [SerializeField] private SO_DeerState MigrateMeadowState;
-    // [SerializeField] private SO_DeerState MigrateStreamState;
-    
+
+    //------------------------------------------ Herd States
     private void OnHerdStateChanged(HerdState state)
     {
         switch (state)
         {
             case HerdState.Fleeing:
-                Debug.Log($"{name} OVERWRITING STATE → FleeState");
                 OverwriteState(FleeState);
                 break;
 
-            // case HerdState.MigrateMeadow:
-            //     OverwriteState(MigrateMeadowState);
-            //     break;
-            //
-            // case HerdState.MigrateStream:
-            //     OverwriteState(MigrateStreamState);
-            //     break;
-
             case HerdState.Normal:
-                Debug.Log($"{name} CLEAR OVERRIDE → { _initialState }");
                 ClearOverride();
                 break;
         }
     }
-    
-    private void OnDisable()
+
+    //------------------------------------------ Need Events
+    public void OnNeedEvent(NeedEvent needEvent)
     {
-        if (DeerAI && DeerAI.Herd && DeerAI.Herd.StateManager != null)
-            DeerAI.Herd.StateManager.OnHerdStateChanged -= OnHerdStateChanged;
-    }
-    
-    
-    //-------------------------------------- connection to DeerFreezer
-    public void OnFreeze()
-    {
-        enabled = false;
+        CurrentState?.OnNeedEvent(this, needEvent);
     }
 
-    public void OnThaw()
-    {
-        enabled = true;
-    }
+    //------------------------------------------ Freezing
+    public void OnFreeze() => enabled = false;
+    public void OnThaw() => enabled = true;
 }

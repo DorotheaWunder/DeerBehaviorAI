@@ -8,6 +8,36 @@ public class HerdStateManager : MonoBehaviour
 
     public event Action<HerdState> OnHerdStateChanged;
     
+    private void OnEnable()
+    {
+        if (SuspicionManager.Instance != null)
+        {
+            SuspicionManager.Instance.OnSuspicionFull.AddListener(OnSuspicionFull);
+            SuspicionManager.Instance.OnSuspicionEmpty.AddListener(OnSuspicionEmpty);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (SuspicionManager.Instance != null)
+        {
+            SuspicionManager.Instance.OnSuspicionFull.RemoveListener(OnSuspicionFull);
+            SuspicionManager.Instance.OnSuspicionEmpty.RemoveListener(OnSuspicionEmpty);
+        }
+    }
+
+    private void OnSuspicionFull()
+    {
+        if (CurrentHerdState != HerdState.Fleeing)
+            SetHerdState(HerdState.Fleeing);
+    }
+    
+    private void OnSuspicionEmpty()
+    {
+        if (CurrentHerdState == HerdState.Fleeing)
+            ResetToNormal();
+    }
+    
     public void SetHerdState(HerdState newState)
     {
         if (newState == CurrentHerdState)
@@ -15,11 +45,6 @@ public class HerdStateManager : MonoBehaviour
 
         CurrentHerdState = newState;
         OnHerdStateChanged?.Invoke(newState);
-    }
-    
-    public void TriggerFlee(Vector3 threatPosition)
-    {
-        SetHerdState(HerdState.Fleeing);
     }
     
     public void TriggerMigrateMeadow(Vector3 meadowPosition)

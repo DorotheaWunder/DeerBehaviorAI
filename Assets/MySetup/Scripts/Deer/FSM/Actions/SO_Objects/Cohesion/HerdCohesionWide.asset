@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 795e07322240023458ca5664366a8d77, type: 3}
-  m_Name: Flee
+  m_Script: {fileID: 11500000, guid: bb7ef9b71da83ce48822880cc158bc38, type: 3}
+  m_Name: HerdCohesionWide
   m_EditorClassIdentifier: 
-  MovementDistance: 20
-  RepathDistance: 10
+  CenterMultiplier: 1.5

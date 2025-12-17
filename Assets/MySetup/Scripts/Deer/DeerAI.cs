@@ -48,4 +48,14 @@ public class DeerAI : MonoBehaviour, ITickable
         //Senses?.Tick(dt);
         //and any other updates as well
     }
+    
+    //------------------------------------------------------- Boid Movement
+    public Vector3 ApplyHerdDirection(Vector3 baseDirection)
+    {
+        if (Herd == null || Herd.CohesionManager == null)
+            return baseDirection;
+
+        Vector3 boidDir = Herd.CohesionManager.GetBoidForce(this);
+        return (baseDirection + boidDir).normalized;
+    }
 }

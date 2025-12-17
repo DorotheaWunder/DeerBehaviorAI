@@ -18,6 +18,7 @@ public class SuspicionManager : MonoBehaviour
 
     public UnityEvent<float> OnSuspicionChanged;
     public UnityEvent OnSuspicionFull;
+    public UnityEvent OnSuspicionEmpty;
 
     private void Awake()
     {
@@ -28,17 +29,14 @@ public class SuspicionManager : MonoBehaviour
 
     private void Update()
     {
-        if (_afterSensedTimer > 0f)
-        {
-            _afterSensedTimer -= Time.deltaTime;
-            return;
-        }
-
         if (_currentSuspicion > 0f)
         {
             _currentSuspicion -= _decayPerSecond * Time.deltaTime;
             _currentSuspicion = Mathf.Max(_currentSuspicion, 0f);
             OnSuspicionChanged?.Invoke(_currentSuspicion / _maxSuspicion);
+
+            if (_currentSuspicion <= 0f)
+                OnSuspicionEmpty?.Invoke();
         }
     }
 

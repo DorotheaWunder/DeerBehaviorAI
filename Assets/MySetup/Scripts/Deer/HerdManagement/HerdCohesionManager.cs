@@ -6,6 +6,10 @@ public class HerdCohesionManager : MonoBehaviour
 {
     public HerdManager _herdManager;
     
+    [Header("Boid Movement")]
+    [Range(0f,1f)]
+    public float BoidFactor = 0.5f;
+    
     [Header("Herd Center")]
     public Transform HerdCenter;
     
@@ -48,8 +52,52 @@ public class HerdCohesionManager : MonoBehaviour
     }
 
     public bool IsOutsideMaxCenterRange(Transform deer) => DistanceToCenter(deer) > MaxToCenter;
-    public bool IsTooFarFromNearestDeer(Transform deer) => DistanceToNearestDeer(deer) > MaxToOtherDeer;
+    public bool IsTooFarFromNearestDeer(Transform deer) => DistanceToNearestDeer(deer) > MaxToOtherDeer; 
     
+    //------------------------------------------ Boid Section
+    public Vector3 GetBoidForce(DeerAI deer)
+    {
+        Vector3 cohesionForce = Vector3.zero;
+        Vector3 separationForce = Vector3.zero;
+        Vector3 alignmentForce = Vector3.zero;
+    
+        int neighborCount = 0;
+
+        foreach (var other in _herdManager.DeerList)
+        {
+            if (other == deer) continue;
+            float distance = Vector3.Distance(deer.transform.position, other.transform.position);
+
+            if (distance < MaxToOtherDeer)
+            {
+                cohesionForce += other.transform.position;
+                
+                if (distance < MinToOtherDeer)
+                    separationForce += (deer.transform.position - other.transform.position) / distance;
+                
+                alignmentForce += Vector3.zero; 
+                neighborCount++;
+            }
+        }
+
+        if (neighborCount > 0)
+        {
+            cohesionForce = (cohesionForce / neighborCount - deer.transform.position).normalized;
+            alignmentForce = (alignmentForce / neighborCount).normalized;
+            separationForce = separationForce.normalized;
+        }
+        
+        Vector3 centerForce = (HerdCenter.position - deer.transform.position).normalized;
+        
+        Vector3 boidForce = (
+            cohesionForce * 0.5f +
+            separationForce * 1f +
+            alignmentForce * 0.3f +
+            centerForce * 0.2f
+        ) * BoidFactor;
+
+        return boidForce;
+    }
     
     //----------------------------------- Gizmos
     private void OnDrawGizmos()

@@ -4,10 +4,17 @@ using UnityEngine;
 
 public abstract class SO_DeerState : ScriptableObject 
 {
+    [Header("Basic Info")]
+    public float MinDuration = 1f;
+    public float MaxDuration = 1f;
     public float UpdateInterval = 0.1f;
-    public float DrainMultiplier = 1f;
-    //maybe duration min/max?
     
+    [Header("Transition")]
+    public float MinTransitionTime = 0.01f;
+    public float MaxTransitionTime = 0.7f;
+    
+    [Header("Need Drain")]
+    public float DrainMultiplier = 1f;
     
     public List<SO_StateAction> Actions = new List<SO_StateAction>();
     public List<StateTransition> Transitions = new List<StateTransition>();
