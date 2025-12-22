@@ -15,6 +15,10 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
     [SerializeField] private float _currentStateDuration;
     [SerializeField] private float _timeUntilNextTransition;
 
+    [Header("Blackboard")]
+    public DeerBlackboard DeerBlackboard;
+    
+    
     [Header("Override (Herd / Emergency)")]
     [SerializeField] private bool _isOverridden;
     [SerializeField] private SO_DeerState _returnState;
@@ -29,6 +33,9 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
         if (!DeerAI) DeerAI = GetComponent<DeerAI>();
         if (DeerAI?.Herd?.StateManager != null)
             DeerAI.Herd.StateManager.OnHerdStateChanged += OnHerdStateChanged;
+        if (DeerBlackboard == null)
+            DeerBlackboard = new DeerBlackboard();
+        AutoPopulateBlackboard();
     }
 
     private void Start()
@@ -153,4 +160,32 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
     //------------------------------------------ Freezing
     public void OnFreeze() => enabled = false;
     public void OnThaw() => enabled = true;
+    
+    private void AutoPopulateBlackboard()
+    {
+        if (DeerAI == null)
+            return;
+
+        Transform senses = DeerAI.transform.Find("Senses");
+        if (senses == null)
+        {
+            Debug.LogWarning($"{name}: No 'Senses' root found.");
+            return;
+        }
+
+        DeerBlackboard.SensesRoot = senses;
+
+        DeerBlackboard.Hearing = senses.Find("Hearing");
+        DeerBlackboard.Sight   = senses.Find("Sight");
+        //DeerBlackboard.Smell   = senses.Find("Smell");
+
+#if UNITY_EDITOR
+        if (DeerBlackboard.Hearing == null)
+            Debug.LogWarning($"{name}: Hearing sense not found.");
+        if (DeerBlackboard.Sight == null)
+            Debug.LogWarning($"{name}: Sight sense not found.");
+        // if (DeerBlackboard.Smell == null)
+        //     Debug.LogWarning($"{name}: Smell sense not found.");
+#endif
+    }
 }

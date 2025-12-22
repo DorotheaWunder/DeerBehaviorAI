@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f83daf6ff9fd80142b1dfd6d27f70d03, type: 3}
-  m_Name: SpeedFast
+  m_Script: {fileID: 11500000, guid: 8fbeeaa60d1391847b1883f9d3b37735, type: 3}
+  m_Name: FarFromDeer
   m_EditorClassIdentifier: 
-  Speed: 8
-  Acceleration: 25
+  Expectation: 1

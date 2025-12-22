@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
+  m_Name: TEST
+  m_EditorClassIdentifier: 
+  MinDuration: 4
+  MaxDuration: 10
+  UpdateInterval: 2
+  MinTransitionTime: 0.01
+  MaxTransitionTime: 0.7
+  DrainMultiplier: 1
+  Actions:
+  - {fileID: 11400000, guid: e7ac3eec03cf55941a57a5640d310463, type: 2}
+  - {fileID: 11400000, guid: 65c6d82a8222a1148bc5208d3d86510b, type: 2}
+  - {fileID: 11400000, guid: 898d46eba425acd48b5b85bdd50d9047, type: 2}
+  - {fileID: 11400000, guid: 2f5c8ef2562e57a42881a990f6a561ea, type: 2}
+  - {fileID: 11400000, guid: b04f29f6c2ab3ff4291badfd49559454, type: 2}
+  Transitions:
+  - Condition: {fileID: 11400000, guid: 3aed653f21f69ff489f308b883f1ca79, type: 2}
+    TargetState: {fileID: 11400000, guid: 038f88e7eb9d688499a6bf5dd616c1cd, type: 2}
+  - Condition: {fileID: 11400000, guid: 25dd0ba1d99eea748920d40d0058e04d, type: 2}
+    TargetState: {fileID: 11400000, guid: b5f8424f41e384b44997b3b02a547e19, type: 2}
+  StateName: TEST
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
+  NeedbasedState: 0

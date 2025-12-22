@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f83daf6ff9fd80142b1dfd6d27f70d03, type: 3}
-  m_Name: SpeedFast
+  m_Script: {fileID: 11500000, guid: f7467c89e05997e45a570795b3cd9d3e, type: 3}
+  m_Name: CloseToHerd
   m_EditorClassIdentifier: 
-  Speed: 8
-  Acceleration: 25
+  Expectation: 0
