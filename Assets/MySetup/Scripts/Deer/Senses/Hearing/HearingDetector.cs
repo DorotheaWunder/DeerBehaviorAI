@@ -5,16 +5,18 @@ using UnityEngine;
 
 public class HearingDetector : MonoBehaviour, IFreezable
 {
-    [SerializeField] private DeerSenseSuspicionManager deerSenseSuspicionManager;
+    [SerializeField] private DeerSenseManager deerSenseManager;
 
     private void OnTriggerEnter(Collider other)
     {
         SoundBubble bubble = other.GetComponent<SoundBubble>();
+        if (bubble == null || !bubble.IsActive) return;
         
-        if (bubble ==null) return;
-        if(!bubble.IsActive) return;
-        
-        deerSenseSuspicionManager.OnSoundHeard(bubble.transform.position);
+        SO_SurfaceProfile surfaceProfile = bubble.SurfaceProfile;
+
+        Debug.Log($"[HearingDetector] Heard bubble on surface: {surfaceProfile?.name ?? "None"}");
+
+        deerSenseManager.OnSoundHeard(bubble.transform.position, surfaceProfile);
     }
     
     //----------------------------------------- Connection to DeerFreezer

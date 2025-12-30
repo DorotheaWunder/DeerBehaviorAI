@@ -14,6 +14,19 @@ public class SO_SurfaceProfile : ScriptableObject
     public AnimationCurve OverrideRadiusCurve;
     public bool UseOverrideCurve = false;
     
-    //multipliers for suspicion/ suspicion decay
-    //array of sfx
+    public float SuspicionMultiplier = 1f;
+    public float AlertPause = 1f;
+    public float DecayMultiplier = 1f;
 }
+
+// public SurfaceType SurfaceType;
+//
+// [Header("Bubble Overrides")]
+// public float RadiusMultiplier = 1f;
+// public float DurationMultiplier = 1f;
+//
+// public AnimationCurve OverrideRadiusCurve;
+// public bool UseOverrideCurve = false;
+//     
+// //multipliers for suspicion/ suspicion decay
+// //array of sfx

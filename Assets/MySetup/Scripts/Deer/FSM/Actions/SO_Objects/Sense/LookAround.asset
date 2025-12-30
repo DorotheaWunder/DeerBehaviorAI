@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LookAround
   m_EditorClassIdentifier: 
   MaxYaw: 45
-  Speed: 1
+  Speed: 1.5
   LookCurve:
     serializedVersion: 2
     m_Curve:
@@ -27,8 +27,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.22263877
-      value: -0.06010708
+      time: 0.12461631
+      value: -1.0259885
       inSlope: -0.000017172422
       outSlope: -0.000017172422
       tangentMode: 0
@@ -36,17 +36,35 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.49721253
-      value: -0.000007560736
-      inSlope: -0.000022877583
-      outSlope: -0.000022877583
+      time: 0.23324835
+      value: -1.0102122
+      inSlope: 0.38914886
+      outSlope: 0.38914886
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.14692111
+    - serializedVersion: 3
+      time: 0.5012239
+      value: -0.041370682
+      inSlope: 7.158567
+      outSlope: 7.158567
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.78798294
-      value: 0.06953169
+      time: 0.6520073
+      value: 1.0164866
+      inSlope: 0.02012632
+      outSlope: 0.02012632
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.61205035
+    - serializedVersion: 3
+      time: 0.81685257
+      value: 1.0258305
       inSlope: -0.000015184268
       outSlope: -0.000015184268
       tangentMode: 0

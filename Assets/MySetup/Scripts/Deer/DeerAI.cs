@@ -11,7 +11,7 @@ public class DeerAI : MonoBehaviour, ITickable
     
     [Header("Manager References")]
     public DeerFSM FSM;
-    public DeerSenseSuspicionManager Senses;
+    public DeerSenseManager Senses;
     public DeerNeedController Needs;
     public HerdManager Herd;
     
@@ -21,7 +21,7 @@ public class DeerAI : MonoBehaviour, ITickable
     {
         if (!Agent) Agent = GetComponent<NavMeshAgent>();
         if (!FSM) FSM = GetComponent<DeerFSM>();
-        if (!Senses) Senses = GetComponent<DeerSenseSuspicionManager>();
+        if (!Senses) Senses = GetComponent<DeerSenseManager>();
         if (!Needs) Needs = GetComponent<DeerNeedController>();
         if (!Herd) Herd = GetComponentInParent<HerdManager>();
     }

@@ -19,8 +19,7 @@ MonoBehaviour:
   MaxTransitionTime: 0.7
   DrainMultiplier: 1
   Actions:
-  - {fileID: 11400000, guid: e946a1fed8418d847a87b0c5aa90d64a, type: 2}
-  - {fileID: 11400000, guid: 1c0317cec9d5e7c4d966e8c34b3c4a46, type: 2}
+  - {fileID: 11400000, guid: 24301d5edf6b7be439311679478ec69a, type: 2}
   Transitions: []
   StateName: 
   AnimationSet: {fileID: 0}
