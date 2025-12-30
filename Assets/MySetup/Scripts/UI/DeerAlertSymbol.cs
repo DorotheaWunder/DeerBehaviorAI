@@ -27,6 +27,6 @@ public class DeerAlertSymbol : MonoBehaviour
 
     private void ActivateSymbol()
     {
-        _symbol.SetActive(true);
+        //_symbol.SetActive(true);
     }
 }

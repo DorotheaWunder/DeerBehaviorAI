@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinRange: 2
   MaxRange: 15
-  FOV: 300
+  FOV: 200
+  CosHalfFOV: -0.8660254
   DistanceFalloff:
     serializedVersion: 2
     m_Curve:
