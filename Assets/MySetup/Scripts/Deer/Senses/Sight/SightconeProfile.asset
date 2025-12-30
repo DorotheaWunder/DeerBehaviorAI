@@ -15,7 +15,7 @@ MonoBehaviour:
   MinRange: 2
   MaxRange: 15
   FOV: 200
-  CosHalfFOV: -0.8660254
+  CosHalfFOV: -0.1736482
   DistanceFalloff:
     serializedVersion: 2
     m_Curve:

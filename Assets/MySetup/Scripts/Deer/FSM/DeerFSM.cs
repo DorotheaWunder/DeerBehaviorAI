@@ -7,6 +7,7 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
 {
     [Header("References")]
     public DeerAI DeerAI;
+    public DeerBlackboard DeerBlackboard;
 
     [Header("State")]
     public SO_DeerState CurrentState;
