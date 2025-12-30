@@ -22,7 +22,7 @@ public class State : SO_DeerState
         
         bb.TargetType = MovementTargetType.None;
         bb.Mode = MovementMode.Stop;
-        bb.FollowTarget = null;
+        bb.Target = null;
 
         bb.HasGoal = false;
         bb.HasDestination = false;
@@ -40,7 +40,7 @@ public class State : SO_DeerState
         
         bb.TargetType = MovementTargetType.None;
         bb.Mode = MovementMode.Stop;
-        bb.FollowTarget = null;
+        bb.Target = null;
 
         bb.HasGoal = false;
         bb.HasDestination = false;

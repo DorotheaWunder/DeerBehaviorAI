@@ -10,7 +10,7 @@ public class SetMovementSpeed : SO_StateAction
 
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
+        if (IsOneShotAction && _hasExecuted) return;
         
         var agent = deerFSM.DeerAI.Agent;
         if (agent == null) return;
@@ -18,6 +18,6 @@ public class SetMovementSpeed : SO_StateAction
         agent.speed = Speed;
         agent.acceleration = Acceleration;
         
-        executedThisState = true;
+        _hasExecuted = true;
     }
 }

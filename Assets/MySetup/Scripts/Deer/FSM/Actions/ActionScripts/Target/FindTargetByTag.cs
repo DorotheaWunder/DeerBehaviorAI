@@ -9,7 +9,7 @@ public class FindTargetByTag : SO_StateAction//maybe alter later to select one o
 
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
+        if (IsOneShotAction && _hasExecuted) return;
         
         var bb = deerFSM.DeerBlackboard;
 
@@ -18,8 +18,8 @@ public class FindTargetByTag : SO_StateAction//maybe alter later to select one o
         var target = GameObject.FindGameObjectWithTag(TargetTag);
         if (target == null) return;
 
-        bb.FollowTarget = target.transform;
+        bb.Target = target.transform;
         
-        executedThisState = true;
+        _hasExecuted = true;
     }
 }

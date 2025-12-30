@@ -7,6 +7,7 @@ public class SoundBubble : MonoBehaviour
 {
     private SoundBubbleRuntimeData _runtime;
 
+    public SO_SurfaceProfile SurfaceProfile { get; private set; }
     public bool IsActive { get; private set; }
     public float Timer { get; set; }
 
@@ -19,6 +20,11 @@ public class SoundBubble : MonoBehaviour
     public void ApplyRuntimeData(SoundBubbleRuntimeData data)
     {
         _runtime = data;
+    }
+
+    public void SetSurfaceProfile(SO_SurfaceProfile profile)
+    {
+        SurfaceProfile = profile;
     }
 
     public void Activate(Vector3 position)

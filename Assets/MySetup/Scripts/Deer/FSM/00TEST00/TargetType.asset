@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f1e6ff1ea3dba438fd139e565ab97a, type: 3}
   m_Name: TargetType
   m_EditorClassIdentifier: 
-  RunOncePerState: 0
-  executedThisState: 1
+  IsOneShotAction: 1
+  _hasExecuted: 0
   TargetType: 2

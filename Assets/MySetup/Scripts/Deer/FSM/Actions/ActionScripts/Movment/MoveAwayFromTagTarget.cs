@@ -5,26 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "DeerFSM/Actions/MoveAwayFromTagTarget")]
 public class MoveAwayFromTagTarget : SO_StateAction
 {
-    public Transform Threat;
     public float FleeDistance = 20f;
 
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
-        
         var bb = deerFSM.DeerBlackboard;
-        if (Threat == null) return;
-
-        Vector3 dir = (deerFSM.transform.position - Threat.position).normalized;
-
-        bb.Mode = MovementMode.Flee;
+        if (bb.Target == null) return;
+        
+        Vector3 dir = (deerFSM.transform.position - bb.Target.position);
+        if (dir.sqrMagnitude < 0.001f) dir = Random.insideUnitSphere;
+        dir.Normalize();
+        
+        bb.Mode = MovementMode.Navigate;
         bb.TargetType = MovementTargetType.Direction;
-        bb.Direction = dir;
-        bb.GoalPoint = deerFSM.transform.position + dir * FleeDistance;
-
+        bb.Direction = dir * FleeDistance;
         bb.HasGoal = true;
         bb.HasDestination = false;
         
-        executedThisState = true;
+        bb.GoalPoint = deerFSM.transform.position + bb.Direction;
     }
 }

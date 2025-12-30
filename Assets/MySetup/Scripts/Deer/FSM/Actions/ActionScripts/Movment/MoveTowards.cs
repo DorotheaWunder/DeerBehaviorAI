@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "DeerFSM/Actions/MoveToTarget")]
-public class MoveTowards : SO_StateAction
+public class MoveTowards : SO_StateAction //version without blackboard
 {
     public string TargetTag;
     
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
-        
         var ai = deerFSM.DeerAI;
         var agent = ai.Agent;
 
@@ -22,7 +20,5 @@ public class MoveTowards : SO_StateAction
             return;
 
         agent.SetDestination(target.transform.position);
-        
-        executedThisState = true;
     }
 }

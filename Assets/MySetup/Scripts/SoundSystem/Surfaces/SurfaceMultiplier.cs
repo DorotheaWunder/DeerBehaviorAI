@@ -35,6 +35,11 @@ public class SurfaceMultiplier : MonoBehaviour
 
       return defaultCurve;
    }
+
+   public SO_SurfaceProfile GetCurrentSurfaceProfile()
+   {
+      return _current;
+   }
 }
 
 public enum SurfaceType

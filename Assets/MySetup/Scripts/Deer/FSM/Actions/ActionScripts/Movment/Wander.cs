@@ -11,15 +11,12 @@ public class Wander : SO_StateAction
 
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
-
         var bb = deerFSM.DeerBlackboard;
-        
-        bb.Mode = MovementMode.Wander;
+
+        bb.Mode = MovementMode.Navigate;
+        bb.TargetType = MovementTargetType.Area;
 
         bb.MinRadius = MinRadius;
         bb.MaxRadius = MaxRadius;
-
-        executedThisState = true;
     }
 }

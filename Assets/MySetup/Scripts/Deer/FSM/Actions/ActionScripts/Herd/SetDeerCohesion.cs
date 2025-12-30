@@ -9,7 +9,7 @@ public class SetDeerCohesion : SO_StateAction
 
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
+        if (IsOneShotAction && _hasExecuted) return;
         
         var herd = deerFSM.DeerAI.Herd;
         if (herd == null || herd.CohesionManager == null)
@@ -17,6 +17,6 @@ public class SetDeerCohesion : SO_StateAction
         
         herd.CohesionManager.IndividualRangeMultiplier = IndividualMultiplier;
         
-        executedThisState = true;
+        _hasExecuted = true;
     }
 }

@@ -4,15 +4,13 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "DeerFSM/Actions/MoveFromTarget")]
-public class MoveAway : SO_StateAction
+public class MoveAway : SO_StateAction //doesnt use blackboard
 {
     public float MovementDistance = 20f;
     public float RepathDistance = 10f;
 
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
-        
         var ai = deerFSM.DeerAI;
         if (ai == null || ai.Player == null || ai.Agent == null)
             return;
@@ -34,7 +32,5 @@ public class MoveAway : SO_StateAction
         {
             ai.Agent.SetDestination(targetPosition);
         }
-        
-        executedThisState = true;
     }
 }

@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4185fa1fbbd07d248ab5a08bc344bc19, type: 3}
   m_Name: Wander
   m_EditorClassIdentifier: 
-  RunOncePerState: 0
-  executedThisState: 0
+  IsOneShotAction: 0
+  _hasExecuted: 0
   MinRadius: 5
   MaxRadius: 15
-  MinStayTime: 1
-  MaxStayTime: 3

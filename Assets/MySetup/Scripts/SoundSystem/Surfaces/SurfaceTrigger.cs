@@ -10,7 +10,7 @@ public class SurfaceTrigger : MonoBehaviour
 
     public SurfaceChangedEvent OnSurfaceChanged;
     
-    private SO_SurfaceProfile _currentProfile;
+    [SerializeField]private SO_SurfaceProfile _currentProfile;
     private int _currentOverlaps = 0;
 
     private void OnTriggerEnter(Collider other)

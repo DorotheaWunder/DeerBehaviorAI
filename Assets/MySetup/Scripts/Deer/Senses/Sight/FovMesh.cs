@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class FovVisualizer : MonoBehaviour
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer), typeof(MeshCollider))]
+public class FovMesh : MonoBehaviour
 {
     public DeerEye Eye;
     public Material FOVMaterial;
@@ -14,6 +14,7 @@ public class FovVisualizer : MonoBehaviour
     private Mesh _mesh;
     private MeshFilter _mf;
     private MeshRenderer _mr;
+    private MeshCollider _mc;
 
     private float lastFOV;
     private float lastMinRange;
@@ -23,9 +24,14 @@ public class FovVisualizer : MonoBehaviour
     {
         _mf = GetComponent<MeshFilter>();
         _mr = GetComponent<MeshRenderer>();
+        _mc = GetComponent<MeshCollider>();
+
         _mesh = new Mesh();
         _mesh.name = "FOV Mesh";
         _mf.sharedMesh = _mesh;
+
+        _mc.convex = true;
+        _mc.isTrigger = true;
     }
     
         private void Update()
@@ -104,5 +110,9 @@ public class FovVisualizer : MonoBehaviour
         _mesh.triangles = tris;
         _mesh.colors = colors;
         _mesh.RecalculateNormals();
+        
+        _mc.sharedMesh = null;
+        _mc.sharedMesh = _mesh;
     }
+    
 }

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936e92e1082802942b0fdeb5d1bbbd8f, type: 3}
   m_Name: MoveContinuous
   m_EditorClassIdentifier: 
-  RunOncePerState: 0
-  executedThisState: 1
+  IsOneShotAction: 0
+  _hasExecuted: 0
+  GoalTolerance: 0.2

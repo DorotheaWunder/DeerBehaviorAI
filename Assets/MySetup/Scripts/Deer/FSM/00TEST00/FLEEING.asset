@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5437162839ed7174493335770429d45f, type: 3}
   m_Name: FLEEING
   m_EditorClassIdentifier: 
-  Threat: {fileID: 0}
+  IsOneShotAction: 0
+  _hasExecuted: 0
   FleeDistance: 20

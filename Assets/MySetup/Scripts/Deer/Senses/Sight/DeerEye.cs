@@ -8,80 +8,59 @@ public class DeerEye : MonoBehaviour
     public SO_SightconeProfile Profile;
     public Transform Target;
 
-    public event Action OnFOVEnter;
-    public event Action OnFOVExit;
+    public bool IsTargetValid { get; private set; }
 
-    private bool playerInside = false;
-
-    public void CheckFOV()
+    public bool EvaluateTarget(out float distance01)
     {
+        distance01 = 0f;
+
         if (Target == null || Profile == null)
-            return;
+        {
+            IsTargetValid = false;
+            return false;
+        }
 
         Vector3 toTarget = Target.position - transform.position;
-        float sqrDist = toTarget.sqrMagnitude;
+        float distance = toTarget.magnitude;
         
-        if (sqrDist > Profile.MaxRange * Profile.MaxRange)
+        if (distance < Profile.MinRange || distance > Profile.MaxRange)
         {
-            ExitIfNeeded();
-            return;
+            IsTargetValid = false;
+            return false;
         }
-        
-        Vector3 dir = toTarget.normalized;
-        float dot = Vector3.Dot(transform.forward, dir);
 
+        Vector3 dir = toTarget / distance;
+        float dot = Vector3.Dot(transform.forward, dir);
         if (dot < Profile.CosHalfFOV)
         {
-            ExitIfNeeded();
-            return;
+            IsTargetValid = false;
+            return false;
         }
-        
-        if (Physics.Raycast(
-                transform.position,
-                dir,
-                out RaycastHit hit,
-                Profile.MaxRange,
-                Profile.VisionMask))
-        {
-            if (hit.collider.CompareTag("Player"))
-            {
-                EnterIfNeeded();
-            }
-            else
-            {
-                ExitIfNeeded();
-            }
-        }
-        else
-        {
-            ExitIfNeeded();
-        }
-    }
-    
-    private void EnterIfNeeded()
-    {
-        if (playerInside) return;
-        playerInside = true;
-        OnFOVEnter?.Invoke();
+
+        distance01 = Mathf.InverseLerp(Profile.MinRange, Profile.MaxRange, distance);
+        IsTargetValid = true;
+        return true;
     }
 
-    private void ExitIfNeeded()
+    public bool HasLineOfSight()
     {
-        if (!playerInside) return;
-        playerInside = false;
-        OnFOVExit?.Invoke();
+        if (Target == null || Profile == null)
+            return false;
+
+        Vector3 origin = transform.position;
+        Vector3 dir = (Target.position - origin).normalized;
+
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, Profile.MaxRange, Profile.VisionMask))
+        {
+            return hit.transform == Target;
+        }
+
+        return false;
     }
-    
+
     public void ClearTarget()
     {
-        if (playerInside)
-        {
-            playerInside = false;
-            OnFOVExit?.Invoke();
-        }
-
         Target = null;
+        IsTargetValid = false;
     }
-
-    public bool IsPlayerInside => playerInside;
 }

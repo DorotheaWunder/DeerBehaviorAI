@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e940335b7f0157241af75df6659b9c09, type: 3}
   m_Name: StopMoving
   m_EditorClassIdentifier: 
+  IsOneShotAction: 0
+  _hasExecuted: 0

@@ -21,7 +21,9 @@ MonoBehaviour:
   Actions:
   - {fileID: 11400000, guid: d9b1da9f6e8120f43b0bd854af54362d, type: 2}
   - {fileID: 11400000, guid: bf2b774ec54442e4f8407e725606cbe2, type: 2}
-  Transitions: []
+  Transitions:
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: TEST
   AnimationSet: {fileID: 11400000, guid: ed65ba675ef7cf046b0d11397a648c4e, type: 2}
   NeedbasedState: 0

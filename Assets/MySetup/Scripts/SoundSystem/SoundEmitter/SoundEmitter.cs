@@ -30,12 +30,15 @@ public class SoundEmitter : MonoBehaviour
          float surfaceDurationMult = _surfaceMultiplier.GetDurationMultiplier();
 
          float finalMovementMult = movementMult * surfaceRadiusMult;
+         
+         SO_SurfaceProfile currentSurface = _surfaceMultiplier.GetCurrentSurfaceProfile();
 
          SoundBubbleManager.InstanceSoundBubbleManager.TriggerBubble(
             _footPivot.position,
             surfaceRadiusMult: surfaceRadiusMult,
             movementMult: finalMovementMult,
             durationMult: surfaceDurationMult,
+            surface: currentSurface,
             overrideCurve: _surfaceMultiplier.GetCurveOrDefault(null)
          );
 

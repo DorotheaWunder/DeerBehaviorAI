@@ -9,11 +9,11 @@ public class RefillNeed : SO_StateAction
     
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
+        if (IsOneShotAction && _hasExecuted) return;
         
         var need = deerFSM.DeerAI.Needs.GetNeed(NeedType);
         need.Recover(Time.deltaTime);
         
-        executedThisState = true;
+        _hasExecuted = true;
     }
 }

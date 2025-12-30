@@ -23,12 +23,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65c6d82a8222a1148bc5208d3d86510b, type: 2}
   - {fileID: 11400000, guid: 898d46eba425acd48b5b85bdd50d9047, type: 2}
   - {fileID: 11400000, guid: 2f5c8ef2562e57a42881a990f6a561ea, type: 2}
-  - {fileID: 11400000, guid: b04f29f6c2ab3ff4291badfd49559454, type: 2}
+  - {fileID: 11400000, guid: 821bdc8d8a5f2d14cb6edc09c031d19d, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: 3aed653f21f69ff489f308b883f1ca79, type: 2}
-    TargetState: {fileID: 11400000, guid: 038f88e7eb9d688499a6bf5dd616c1cd, type: 2}
-  - Condition: {fileID: 11400000, guid: 25dd0ba1d99eea748920d40d0058e04d, type: 2}
-    TargetState: {fileID: 11400000, guid: b5f8424f41e384b44997b3b02a547e19, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: 1fb6f8f9bef271941835851d7a25360a, type: 2}
   StateName: TEST
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   NeedbasedState: 0

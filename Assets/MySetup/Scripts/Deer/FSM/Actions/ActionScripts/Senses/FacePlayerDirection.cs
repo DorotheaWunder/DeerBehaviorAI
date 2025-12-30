@@ -7,11 +7,11 @@ public class FacePlayerDirection : SO_StateAction
 {
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
+        if (IsOneShotAction && _hasExecuted) return;
         
         if (deerFSM.DeerAI.Player != null)
             deerFSM.transform.LookAt(deerFSM.DeerAI.Player.transform);
         
-        executedThisState = true;
+        _hasExecuted = true;
     }
 }

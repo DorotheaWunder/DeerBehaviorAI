@@ -9,14 +9,7 @@ public class SetMovementMode : SO_StateAction
     
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
-        
         var bb = deerFSM.DeerBlackboard;
-
-        if (bb.HasGoal) return;
-        
         bb.Mode = Mode;
-        
-        executedThisState = true;
     }
 }

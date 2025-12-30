@@ -69,12 +69,13 @@ public class SoundBubbleManager : MonoBehaviour
         float surfaceRadiusMult,
         float movementMult,
         float durationMult,
+        SO_SurfaceProfile surface = null,
         AnimationCurve overrideCurve = null
     )
     {
         var bubble = GetFree();
         if (bubble == null) return;
-        
+
         var data = new SoundBubbleRuntimeData
         {
             BaseData = _baseData,
@@ -84,6 +85,7 @@ public class SoundBubbleManager : MonoBehaviour
         };
 
         bubble.ApplyRuntimeData(data);
+        bubble.SetSurfaceProfile(surface);
         bubble.Activate(position);
 
         _active.Add(bubble);

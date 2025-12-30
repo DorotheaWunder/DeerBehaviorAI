@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 823e4853a6b6e9a45ba90e6473d29ce1, type: 3}
   m_Name: SetMovementMode
   m_EditorClassIdentifier: 
-  RunOncePerState: 0
-  executedThisState: 1
+  IsOneShotAction: 1
+  _hasExecuted: 0
   Mode: 1

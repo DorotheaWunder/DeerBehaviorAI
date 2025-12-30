@@ -5,36 +5,53 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "DeerFSM/Actions/MoveToTagTarget")]
 public class MoveToTagTarget : SO_StateAction
 {
+    public float GoalTolerance = 0.2f;
+
     public override void ExecuteAction(DeerFSM deerFSM)
     {
-        if (RunOncePerState && executedThisState) return;
-        
         var bb = deerFSM.DeerBlackboard;
 
-        if (bb.Mode == MovementMode.Stop) return;
-        
+        if (bb.Mode == MovementMode.Stop || bb.Target == null)
+            return;
+
+        Vector3 newGoal = bb.GoalPoint;
+        bool goalChanged = false;
+
         switch (bb.TargetType)
         {
             case MovementTargetType.Point:
-                bb.GoalPoint = bb.FollowTarget.position;
+                newGoal = bb.Target.position;
+                goalChanged = !ApproximatelySame(bb.GoalPoint, newGoal);
                 break;
 
             case MovementTargetType.Area:
-                Vector3 center = bb.FollowTarget.position;
-                float radius = Random.Range(bb.MinRadius, bb.MaxRadius);
-                Vector2 offset = Random.insideUnitCircle * radius;
-                bb.GoalPoint = center + new Vector3(offset.x, 0, offset.y);
+                if (!bb.HasGoal)
+                {
+                    Vector3 center = bb.Target.position;
+                    float radius = Random.Range(bb.MinRadius, bb.MaxRadius);
+                    Vector2 offset = Random.insideUnitCircle * radius;
+                    newGoal = center + new Vector3(offset.x, 0, offset.y);
+                    goalChanged = true;
+                }
                 break;
 
             case MovementTargetType.Direction:
-                bb.GoalPoint = bb.Direction + deerFSM.transform.position;
+                newGoal = deerFSM.transform.position + bb.Direction;
+                goalChanged = true;
                 break;
         }
 
+        if (!goalChanged)
+            return;
+
+        bb.GoalPoint = newGoal;
         bb.HasGoal = true;
         bb.HasDestination = false;
         bb.TimeAtDestination = 0f;
-        
-        executedThisState = true;
+    }
+
+    private bool ApproximatelySame(Vector3 a, Vector3 b)
+    {
+        return Vector3.SqrMagnitude(a - b) <= GoalTolerance * GoalTolerance;
     }
 }

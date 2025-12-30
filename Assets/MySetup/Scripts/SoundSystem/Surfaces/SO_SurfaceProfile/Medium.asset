@@ -40,3 +40,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   UseOverrideCurve: 1
+  SuspicionMultiplier: 1
+  AlertPause: 0.65
+  DecayMultiplier: 1
