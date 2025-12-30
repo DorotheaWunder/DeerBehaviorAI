@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
   m_Name: Alert
   m_EditorClassIdentifier: 
+  MinDuration: 1
+  MaxDuration: 1
+  UpdateInterval: 0.1
+  MinTransitionTime: 0.01
+  MaxTransitionTime: 0.7
+  DrainMultiplier: 1
   Actions:
   - {fileID: 11400000, guid: 1efe0d13d7a99a941890639bc4a2dfd9, type: 2}
+  - {fileID: 11400000, guid: 2a04387be7d627644992417cca2dd4ce, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 9fcf58362ec2f764f841f250b5e779b2, type: 2}
     TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
@@ -21,3 +28,4 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Alert
   AnimationSet: {fileID: 11400000, guid: ed65ba675ef7cf046b0d11397a648c4e, type: 2}
+  NeedbasedState: 0
