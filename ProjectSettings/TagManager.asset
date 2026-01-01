@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Stream
   - Meadow
+  - HerdCenter
+  - Deer
   layers:
   - Default
   - TransparentFX

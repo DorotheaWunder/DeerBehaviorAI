@@ -10,20 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: 1Thirsty
+  m_Name: ReturnToDeer
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
   MinTransitionTime: 0.01
   MaxTransitionTime: 0.7
-  DrainMultiplier: 0
-  Actions: []
+  DrainMultiplier: 1
+  Actions:
+  - {fileID: 11400000, guid: da8e417b14360b74692625b5283c6a9c, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
-    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   - Condition: {fileID: 11400000, guid: 7f0b0f1f8157788438dd9c26dc922ffd, type: 2}
-    TargetState: {fileID: 11400000, guid: 8c01355c4053a0f40a6d6de0d3b76915, type: 2}
-  StateName: Thirsty
-  AnimationSet: {fileID: 0}
-  NeedbasedState: 2
+    TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
+  StateName: Return to Deer
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
+  NeedbasedState: 0
