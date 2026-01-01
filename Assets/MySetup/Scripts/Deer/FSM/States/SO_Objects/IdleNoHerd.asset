@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
+  m_Name: IdleNoHerd
+  m_EditorClassIdentifier: 
+  MinDuration: 1
+  MaxDuration: 1
+  UpdateInterval: 2.5
+  MinTransitionTime: 0.01
+  MaxTransitionTime: 0.7
+  DrainMultiplier: 1
+  Actions:
+  - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
+  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
+  - {fileID: 11400000, guid: a71c9a6c21c2a69459ed5abaaa5fa811, type: 2}
+  Transitions:
+  - Condition: {fileID: 11400000, guid: 28a4d0b1bb127a9448d9ff02b4f88e25, type: 2}
+    TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
+  - Condition: {fileID: 11400000, guid: 0b6a6ead5041bac40864d7f36df618f0, type: 2}
+    TargetState: {fileID: 11400000, guid: 625299acfd829164d8552daade6bba7a, type: 2}
+  - Condition: {fileID: 11400000, guid: 9bd877c9538d50b42a8923542185a7a6, type: 2}
+    TargetState: {fileID: 11400000, guid: 819af97ff7346c04b8f25aae30a11aac, type: 2}
+  - Condition: {fileID: 11400000, guid: 1ee8a9ee573eae741850e3fed20e24cd, type: 2}
+    TargetState: {fileID: 11400000, guid: 6385455ae16a44f4988f18ce17b2849c, type: 2}
+  StateName: Idle
+  AnimationSet: {fileID: 11400000, guid: 7228a360f604a174d885b21f5a2a9172, type: 2}
+  NeedbasedState: 0

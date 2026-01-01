@@ -21,6 +21,7 @@ MonoBehaviour:
   Actions:
   - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
   - {fileID: 11400000, guid: 4417af11c64631c47b02796f71eb4ba1, type: 2}
+  - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 63aa0598ae96c25498b764d2296fed94, type: 2}
     TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}

@@ -4090,7 +4090,7 @@ MonoBehaviour:
   BoidFactor: 0.5
   HerdCenter: {fileID: 870002723}
   BaseMinToCenter: 5
-  BaseMaxToCenter: 30
+  BaseMaxToCenter: 20
   BaseMinToOtherDeer: 3
   BaseMaxToOtherDeer: 20
   CenterRangeMultiplier: 1
@@ -12427,7 +12427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlaceTag: HerdCenter
-  Radius: 15
+  Radius: 10
   GizmoColor: {r: 0.9245283, g: 0.518803, b: 0.22851546, a: 1}
 --- !u!1 &878351733
 GameObject:
@@ -16899,7 +16899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1124758878
 Transform:
   m_ObjectHideFlags: 0

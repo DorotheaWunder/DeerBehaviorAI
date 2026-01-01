@@ -20,6 +20,7 @@ MonoBehaviour:
   DrainMultiplier: 1
   Actions:
   - {fileID: 11400000, guid: da8e417b14360b74692625b5283c6a9c, type: 2}
+  - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 7f0b0f1f8157788438dd9c26dc922ffd, type: 2}
     TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
