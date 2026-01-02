@@ -57,6 +57,11 @@ public class HerdStateManager : MonoBehaviour
         SetHerdState(HerdState.MigrateStream);
     }
     
+    public void TriggerMigrateShelter(Vector3 meadowPosition)
+    {
+        SetHerdState(HerdState.MigrateShelter);
+    }
+    
     public void ResetToNormal()
     {
         SetHerdState(HerdState.Normal);

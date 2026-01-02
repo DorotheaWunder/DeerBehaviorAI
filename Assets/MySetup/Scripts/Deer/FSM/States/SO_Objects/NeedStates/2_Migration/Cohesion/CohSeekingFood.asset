@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: ReturnToHerd
+  m_Name: CohSeekingFood
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
-  MinTransitionTime: 0.2
-  MaxTransitionTime: 1
-  DrainMultiplier: 1
+  MinTransitionTime: 0.01
+  MaxTransitionTime: 0.7
+  DrainMultiplier: 0
   Actions:
-  - {fileID: 11400000, guid: 6a3eb686f20eab645bfc290db32d2a8d, type: 2}
+  - {fileID: 11400000, guid: c925b37035ceb8c45be601c14ad2095e, type: 2}
   - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: 0fec7d17c540c0345815a50f951eea03, type: 2}
-    TargetState: {fileID: 11400000, guid: ceaec212908467e45bca6fd708776053, type: 2}
-  StateName: Return to Herd
+  - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
+    TargetState: {fileID: 11400000, guid: d1171bc3f1c53624e9e23b8870c78967, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
+  StateName: Seeking Food
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   NeedbasedState: 0

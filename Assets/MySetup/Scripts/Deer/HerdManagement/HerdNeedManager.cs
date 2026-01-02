@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class HerdNeedManager : MonoBehaviour
 {
+    
+    public HerdStateManager StateManager;
+    
     [Header("Deer List")]
     public List<DeerAI> DeerList = new List<DeerAI>();
     [SerializeField] private int _herdSize;
@@ -17,6 +20,8 @@ public class HerdNeedManager : MonoBehaviour
         DeerList.Clear();
         GetComponentsInChildren<DeerAI>(includeInactive: false, result: DeerList);
         _herdSize = DeerList.Count;
+        
+        StateManager = GetComponent<HerdStateManager>();
         
         foreach (var deer in DeerList)
         {
@@ -55,12 +60,24 @@ public class HerdNeedManager : MonoBehaviour
     private void CheckMajority()
     {
         if (HungryDeer > _herdSize / 2)
+        {
             Debug.Log("HERD: Majority is hungry.");
+            StateManager.TriggerMigrateMeadow(Vector3.zero);
+            return;
+        }
 
         if (ThirstyDeer > _herdSize / 2)
+        {
             Debug.Log("HERD: Majority is thirsty.");
+            StateManager.TriggerMigrateStream(Vector3.zero);
+            return;
+        }
 
         if (TiredDeer > _herdSize / 2)
+        {
             Debug.Log("HERD: Majority is tired.");
+            StateManager.TriggerMigrateShelter(Vector3.zero);
+            return;
+        }
     }
 }

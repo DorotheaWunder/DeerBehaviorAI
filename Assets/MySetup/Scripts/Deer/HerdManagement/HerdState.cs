@@ -7,5 +7,6 @@ public enum HerdState
     Normal,
     Fleeing,
     MigrateMeadow,
-    MigrateStream
+    MigrateStream,
+    MigrateShelter
 }

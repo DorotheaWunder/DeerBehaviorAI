@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2abaec302984bc641b1f149f225063ee, type: 3}
-  m_Name: Water
+  m_Script: {fileID: 11500000, guid: f32cf571708011948914db59ea0cfa78, type: 3}
+  m_Name: MoveCollective
   m_EditorClassIdentifier: 
-  NeedType: 2
-  DrainPerSecond: 0.015
-  RecoveryPerSecond: 0.3
-  LowThreshold: 0.4
-  HighThreshold: 0.8
+  MovementDistance: 15
+  RepathDistance: 5

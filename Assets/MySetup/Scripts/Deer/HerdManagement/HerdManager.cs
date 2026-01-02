@@ -10,6 +10,9 @@ public class HerdManager : MonoBehaviour
     public HerdCohesionManager CohesionManager;
     public HerdNeedManager NeedManager;
     
+    [Header("Herd Movement")]
+    public Transform CurrentPOI;
+    
     [Header("Deer List")]
     public List<DeerAI> DeerList = new List<DeerAI>();
 

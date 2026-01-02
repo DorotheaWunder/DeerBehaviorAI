@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: IdleWithHerd
+  m_Name: IdleTEST
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
@@ -26,13 +26,11 @@ MonoBehaviour:
   - Condition: {fileID: 11400000, guid: 28a4d0b1bb127a9448d9ff02b4f88e25, type: 2}
     TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   - Condition: {fileID: 11400000, guid: 0b6a6ead5041bac40864d7f36df618f0, type: 2}
-    TargetState: {fileID: 11400000, guid: bee4cdb0859e7db4ea2d10c52371af21, type: 2}
+    TargetState: {fileID: 11400000, guid: c6c67b8cd203e1448ba45cb8556930c7, type: 2}
   - Condition: {fileID: 11400000, guid: 9bd877c9538d50b42a8923542185a7a6, type: 2}
-    TargetState: {fileID: 11400000, guid: 2206a136d378a6c42a3764e97d5fd911, type: 2}
+    TargetState: {fileID: 11400000, guid: 88c601be01fd95547b6d095f1a3f0904, type: 2}
   - Condition: {fileID: 11400000, guid: 1ee8a9ee573eae741850e3fed20e24cd, type: 2}
-    TargetState: {fileID: 11400000, guid: 6f36eaf75c0e3be4dafb544c53eb7b78, type: 2}
-  - Condition: {fileID: 11400000, guid: 818aac27eab28074da3ab26f52da8bb0, type: 2}
-    TargetState: {fileID: 11400000, guid: ade46b34b94edd140b7f73c4d7b25bef, type: 2}
+    TargetState: {fileID: 11400000, guid: 670b8715cce99c549a51dd3ac7a4a4e2, type: 2}
   StateName: Idle
   AnimationSet: {fileID: 11400000, guid: 7228a360f604a174d885b21f5a2a9172, type: 2}
   NeedbasedState: 0
