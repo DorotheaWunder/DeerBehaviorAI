@@ -10,20 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: MigrateToMeadow
+  m_Name: ModHungry
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
   MinTransitionTime: 0.01
   MaxTransitionTime: 0.7
-  DrainMultiplier: 1
+  DrainMultiplier: 0
   Actions:
-  - {fileID: 11400000, guid: 80f878f1aa33d684ebe0ae4662b1e551, type: 2}
-  - {fileID: 11400000, guid: a9132ff3ddd405045a08f8e1080da9a2, type: 2}
+  - {fileID: 11400000, guid: a3433b54f75097f498970e99cddf7070, type: 2}
+  - {fileID: 11400000, guid: 86df4b87916f86d4aa71b42ba3f5ebd8, type: 2}
+  - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
-    TargetState: {fileID: 11400000, guid: 6a4c662d42180ca4ca09125aada1f70f, type: 2}
-  StateName: Migrating to Meadow
-  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
+    TargetState: {fileID: 11400000, guid: df7fd2a029daf254896e36477ecea20d, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
+  StateName: Hungry
+  AnimationSet: {fileID: 0}
   NeedbasedState: 1

@@ -26,4 +26,4 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: 02a4c11bde9cb8647ae2763ea13f099f, type: 2}
   StateName: Migrating to Shelter
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
-  NeedbasedState: 0
+  NeedbasedState: 3

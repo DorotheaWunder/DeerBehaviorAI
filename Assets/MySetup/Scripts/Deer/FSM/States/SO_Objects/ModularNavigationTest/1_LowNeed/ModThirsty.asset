@@ -10,20 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: MigrateToStream
+  m_Name: ModThirsty
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
   MinTransitionTime: 0.01
   MaxTransitionTime: 0.7
-  DrainMultiplier: 1
+  DrainMultiplier: 0
   Actions:
-  - {fileID: 11400000, guid: c59346b20fc346340bf5bb35ae08c21d, type: 2}
-  - {fileID: 11400000, guid: a9132ff3ddd405045a08f8e1080da9a2, type: 2}
+  - {fileID: 11400000, guid: 0fbbe4eed3791254a842bcc672f41695, type: 2}
+  - {fileID: 11400000, guid: 86df4b87916f86d4aa71b42ba3f5ebd8, type: 2}
+  - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 46d84d81f6efae44a9af53f3dbe0a919, type: 2}
-    TargetState: {fileID: 11400000, guid: b56bf5eafe6b4e3479a6ed79ef7ee696, type: 2}
-  StateName: Migrating to Stream
-  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
+    TargetState: {fileID: 11400000, guid: 255bceff256bc83469335dbb6fd0edac, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
+  StateName: Thirsty
+  AnimationSet: {fileID: 0}
   NeedbasedState: 2

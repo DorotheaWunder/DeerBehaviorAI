@@ -12,6 +12,10 @@ public class HerdManager : MonoBehaviour
     
     [Header("Herd Movement")]
     public Transform CurrentPOI;
+    public Vector3 AnchorPosition;
+    public Vector3 GoalPosition;
+    public bool HasDestination;
+    public bool HasArrived;
     
     [Header("Deer List")]
     public List<DeerAI> DeerList = new List<DeerAI>();

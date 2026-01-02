@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
+  m_Name: ModTired
+  m_EditorClassIdentifier: 
+  MinDuration: 1
+  MaxDuration: 1
+  UpdateInterval: 0.1
+  MinTransitionTime: 0.1
+  MaxTransitionTime: 0.5
+  DrainMultiplier: 0
+  Actions:
+  - {fileID: 11400000, guid: a3433b54f75097f498970e99cddf7070, type: 2}
+  - {fileID: 11400000, guid: 86df4b87916f86d4aa71b42ba3f5ebd8, type: 2}
+  - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
+  Transitions:
+  - Condition: {fileID: 11400000, guid: 88aedc2d610303141aed85436d661666, type: 2}
+    TargetState: {fileID: 11400000, guid: 7bbe3c0a3775de24c907df2076d645ef, type: 2}
+  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
+    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
+  StateName: Tired
+  AnimationSet: {fileID: 0}
+  NeedbasedState: 3
