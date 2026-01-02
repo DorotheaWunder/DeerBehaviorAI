@@ -10,24 +10,13 @@ public class DeerBlackboard
     public float TimePlayerVisible;
     public bool HasLineOfSight;
     
-    [Header("Senses")]
-    public Transform SensesRoot;
-    public Transform Hearing;
-    public Transform Sight;
-    // public GameObject Smell;
+    
      
-    // [Header("Movement Goal")]
-    // public MovementTargetType TargetType = MovementTargetType.None;
-    // public MovementMode Mode = MovementMode.Stop;
-
-    [Header("References")]
-    public Transform Target;
-    public Vector3 GoalPoint;
-    public Vector3 Direction;
-
-    [Header("Area Settings")]
-    public float MinRadius;
-    public float MaxRadius;
+    [Header("Navigation")]
+    public MovementIntent MovementIntent;
+    public Vector3 AnchorPosition;
+    public Vector3 GoalPosition;
+    public Vector3 GoalDirection;
 
     [Header("Wander Settings")]
     public float WanderCooldown;
@@ -36,11 +25,18 @@ public class DeerBlackboard
     [Header("Runtime")]
     public bool HasGoal;
     public bool HasDestination;
+    public bool HasArrived; 
     public float TimeAtDestination;
 
     [Header("Repathing")]
     public float DestinationUpdateCooldown = 0.5f;
-    public float RepathDistanceThreshold = 1.5f;
+    public float RepathDistanceThreshold = 3f;
+    
+    [Header("Senses")]
+    public Transform SensesRoot;
+    public Transform Hearing;
+    public Transform Sight;
+    // public GameObject Smell;
     
     [Header("Debug")]
     public bool DebugDrawDestination;

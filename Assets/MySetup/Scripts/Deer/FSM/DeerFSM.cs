@@ -7,7 +7,6 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
 {
     [Header("References")]
     public DeerAI DeerAI;
-    public DeerBlackboard DeerBlackboard;
 
     [Header("State")]
     public SO_DeerState CurrentState;
@@ -15,7 +14,10 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
     [SerializeField] private float _timeInState;
     [SerializeField] private float _currentStateDuration;
     [SerializeField] private float _timeUntilNextTransition;
-
+    
+    [Header("BlackBoard")]
+    public DeerBlackboard DeerBlackboard;
+    
     [Header("Override (Herd / Emergency)")]
     [SerializeField] private bool _isOverridden;
     [SerializeField] private SO_DeerState _returnState;

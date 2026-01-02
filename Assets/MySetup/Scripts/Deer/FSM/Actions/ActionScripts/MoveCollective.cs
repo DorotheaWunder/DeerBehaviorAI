@@ -28,14 +28,14 @@ public class MoveCollective : SO_StateAction
             Vector3 direction = (herdTarget - ai.transform.position).normalized;
             direction = ai.ApplyHerdDirection(direction);
             
-            bb.GoalPoint = herdTarget + direction * Random.Range(0.5f, 2f);
+            bb.GoalPosition = herdTarget + direction * Random.Range(0.5f, 2f);
             bb.HasDestination = true;
 
-            agent.SetDestination(bb.GoalPoint);
+            agent.SetDestination(bb.GoalPosition);
             return;
         }
 
-        float sqrDist = (ai.transform.position - bb.GoalPoint).sqrMagnitude;
+        float sqrDist = (ai.transform.position - bb.GoalPosition).sqrMagnitude;
 
         if (sqrDist <= ArrivalDistance * ArrivalDistance)
         {
@@ -46,9 +46,9 @@ public class MoveCollective : SO_StateAction
         }
 
         if (!agent.hasPath ||
-            Vector3.Distance(agent.destination, bb.GoalPoint) > RepathDistance)
+            Vector3.Distance(agent.destination, bb.GoalPosition) > RepathDistance)
         {
-            agent.SetDestination(bb.GoalPoint);
+            agent.SetDestination(bb.GoalPosition);
         }
     }
 }
