@@ -33,6 +33,8 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: 6f36eaf75c0e3be4dafb544c53eb7b78, type: 2}
   - Condition: {fileID: 11400000, guid: 818aac27eab28074da3ab26f52da8bb0, type: 2}
     TargetState: {fileID: 11400000, guid: ade46b34b94edd140b7f73c4d7b25bef, type: 2}
+  - Condition: {fileID: 11400000, guid: 4d75f5086ecce7d4183bdef307d8acb0, type: 2}
+    TargetState: {fileID: 11400000, guid: a9a2dce773bae58419a0614936437632, type: 2}
   StateName: Idle
   AnimationSet: {fileID: 11400000, guid: 7228a360f604a174d885b21f5a2a9172, type: 2}
   NeedbasedState: 0
