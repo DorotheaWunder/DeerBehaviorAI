@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Water
   m_EditorClassIdentifier: 
   NeedType: 2
-  DrainPerSecond: 0.015
-  RecoveryPerSecond: 0.3
-  LowThreshold: 0.4
-  HighThreshold: 0.8
+  DrainPerSecond: 0.01
+  RecoveryPerSecond: 0.2
+  LowThreshold: 0.128
+  HighThreshold: 0.917

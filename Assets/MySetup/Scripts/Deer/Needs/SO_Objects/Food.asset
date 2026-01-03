@@ -15,5 +15,5 @@ MonoBehaviour:
   NeedType: 1
   DrainPerSecond: 0.01
   RecoveryPerSecond: 0.2
-  LowThreshold: 0.4
+  LowThreshold: 0.182
   HighThreshold: 0.9
