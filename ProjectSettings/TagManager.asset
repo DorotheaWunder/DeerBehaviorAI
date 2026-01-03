@@ -8,6 +8,7 @@ TagManager:
   - Meadow
   - HerdCenter
   - Deer
+  - Shelter
   layers:
   - Default
   - TransparentFX
