@@ -1017,12 +1017,12 @@ MonoBehaviour:
   - NeedProfile: {fileID: 11400000, guid: 6ddaa57f6ce72694b941dbed0c5ab27c, type: 2}
     _needValue: 1
   baseTickInterval: 0.25
-  FoodDrainRange: {x: 0, y: 0}
-  FoodRecoverRange: {x: 0, y: 0}
-  WaterDrainRange: {x: 10, y: 10}
+  FoodDrainRange: {x: 11, y: 11}
+  FoodRecoverRange: {x: 5, y: 5}
+  WaterDrainRange: {x: 20, y: 20}
   WaterRecoverRange: {x: 5, y: 5}
-  StaminaDrainRange: {x: 0, y: 0}
-  StaminaRecoverRange: {x: 0, y: 0}
+  StaminaDrainRange: {x: 11, y: 11}
+  StaminaRecoverRange: {x: 5, y: 5}
   CurrentDistanceMultiplier: 1
 --- !u!195 &252815230
 NavMeshAgent:
@@ -6184,11 +6184,11 @@ MonoBehaviour:
   - NeedProfile: {fileID: 11400000, guid: 6ddaa57f6ce72694b941dbed0c5ab27c, type: 2}
     _needValue: 1
   baseTickInterval: 0.25
-  FoodDrainRange: {x: 0, y: 0}
-  FoodRecoverRange: {x: 0, y: 0}
-  WaterDrainRange: {x: 0, y: 0}
-  WaterRecoverRange: {x: 0, y: 0}
-  StaminaDrainRange: {x: 10, y: 10}
+  FoodDrainRange: {x: 11, y: 11}
+  FoodRecoverRange: {x: 5, y: 5}
+  WaterDrainRange: {x: 11, y: 11}
+  WaterRecoverRange: {x: 5, y: 5}
+  StaminaDrainRange: {x: 25, y: 25}
   StaminaRecoverRange: {x: 5, y: 5}
   CurrentDistanceMultiplier: 1
 --- !u!114 &1262554868
@@ -6536,12 +6536,12 @@ MonoBehaviour:
   - NeedProfile: {fileID: 11400000, guid: 6ddaa57f6ce72694b941dbed0c5ab27c, type: 2}
     _needValue: 1
   baseTickInterval: 0.25
-  FoodDrainRange: {x: 25, y: 25}
+  FoodDrainRange: {x: 50, y: 50}
   FoodRecoverRange: {x: 5, y: 5}
-  WaterDrainRange: {x: 0, y: 0}
-  WaterRecoverRange: {x: 0, y: 0}
-  StaminaDrainRange: {x: 0, y: 0}
-  StaminaRecoverRange: {x: 0, y: 0}
+  WaterDrainRange: {x: 11, y: 11}
+  WaterRecoverRange: {x: 5, y: 5}
+  StaminaDrainRange: {x: 11, y: 11}
+  StaminaRecoverRange: {x: 5, y: 5}
   CurrentDistanceMultiplier: 1
 --- !u!114 &1326460274
 MonoBehaviour:

@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class VisibilityToggle : MonoBehaviour
 {
+    [Header("Marker UI")]
+    public GameObject MarkerUI;
+        
     [Header("Sense Materials")]
     public Material VisionMaterial;
     public Material HearingMaterial;
@@ -48,12 +51,14 @@ public class VisibilityToggle : MonoBehaviour
     {
         targetVisionAlpha = VisionAlpha;
         targetHearingAlpha = HearingAlpha;
+        MarkerUI.SetActive(true);
     }
 
     private void OnHunterSenseReleased(InputAction.CallbackContext ctx)
     {
         targetVisionAlpha = 0f;
         targetHearingAlpha = 0f;
+        MarkerUI.SetActive(false);
     }
 
     private void Fade(Material mat, float targetAlpha)
