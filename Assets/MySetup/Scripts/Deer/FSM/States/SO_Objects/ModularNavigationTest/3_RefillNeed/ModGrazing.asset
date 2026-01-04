@@ -29,4 +29,8 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Grazing
   AnimationSet: {fileID: 11400000, guid: 8c7902aa496a0bd418b515dfba03c5c3, type: 2}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0.05
   NeedbasedState: 0

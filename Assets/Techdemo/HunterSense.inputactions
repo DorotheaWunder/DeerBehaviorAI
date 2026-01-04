@@ -1,0 +1,63 @@
+{
+    "version": 1,
+    "name": "HunterSense",
+    "maps": [
+        {
+            "name": "PlayerControl",
+            "id": "9d0a1c6b-4e17-449a-9dee-1107c2ab9538",
+            "actions": [
+                {
+                    "name": "HunterSense",
+                    "type": "Button",
+                    "id": "5419132e-096d-4f1b-84c1-628c17ee25eb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "fe06e1ce-d45f-40dd-ad4a-0fe6dd7c0251",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HunterSense",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UIControl",
+            "id": "44db0bef-24e4-44a7-abe5-31faa1609ad8",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "5b415efb-bae5-4b9d-9935-a2188cc12c7a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1c89c20e-78be-4fce-b272-5d27d0f2ffc4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

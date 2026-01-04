@@ -26,4 +26,9 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: 6a4c662d42180ca4ca09125aada1f70f, type: 2}
   StateName: Migrating to Meadow
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0
+  AllowLoopPause: 0
   NeedbasedState: 1

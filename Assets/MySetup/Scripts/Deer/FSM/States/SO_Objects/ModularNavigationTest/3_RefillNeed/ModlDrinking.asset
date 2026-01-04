@@ -29,4 +29,8 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Drinking
   AnimationSet: {fileID: 11400000, guid: e114dca58a8bb2a449275bde878fe891, type: 2}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0.05
   NeedbasedState: 0

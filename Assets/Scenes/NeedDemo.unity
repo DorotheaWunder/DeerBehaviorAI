@@ -995,7 +995,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 6988371171813936859}
-  _currentLoop: {fileID: 0}
+  _individualSpeedMin: 0.8
+  _individualSpeedMax: 1.2
 --- !u!114 &252815229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6187,7 +6188,7 @@ MonoBehaviour:
   FoodRecoverRange: {x: 0, y: 0}
   WaterDrainRange: {x: 0, y: 0}
   WaterRecoverRange: {x: 0, y: 0}
-  StaminaDrainRange: {x: 15, y: 15}
+  StaminaDrainRange: {x: 10, y: 10}
   StaminaRecoverRange: {x: 5, y: 5}
   CurrentDistanceMultiplier: 1
 --- !u!114 &1262554868
@@ -6203,7 +6204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 6052183595187417716}
-  _currentLoop: {fileID: 0}
+  _individualSpeedMin: 0.8
+  _individualSpeedMax: 1.2
 --- !u!114 &1262554869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6554,7 +6556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 984381364510707923}
-  _currentLoop: {fileID: 0}
+  _individualSpeedMin: 0.8
+  _individualSpeedMax: 1.2
 --- !u!114 &1326460275
 MonoBehaviour:
   m_ObjectHideFlags: 0

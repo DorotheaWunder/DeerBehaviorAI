@@ -26,4 +26,9 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: a1a2dda85f207684f8f73d9cbc2c2fa7, type: 2}
   StateName: Hungry
   AnimationSet: {fileID: 0}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0.01
+  AllowLoopPause: 0
   NeedbasedState: 1

@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c966277fd9e193b48b52839092bf6ad3, type: 3}
   m_Name: AnimRest
   m_EditorClassIdentifier: 
-  EntryAnimation: {fileID: 0}
+  EntryAnimation: {fileID: 6578508318716715567, guid: 209a5c63cb87da240bc8ab25d048b723,
+    type: 3}
   LoopAnimations:
-  - {fileID: 7400048, guid: de9fe0d01d1e94d40955c55ac0b4e5f9, type: 3}
-  ExitAnimation: {fileID: 0}
+  - {fileID: 5752831047141757166, guid: 209a5c63cb87da240bc8ab25d048b723, type: 3}
+  ExitAnimation: {fileID: -3812928726824127383, guid: 209a5c63cb87da240bc8ab25d048b723,
+    type: 3}

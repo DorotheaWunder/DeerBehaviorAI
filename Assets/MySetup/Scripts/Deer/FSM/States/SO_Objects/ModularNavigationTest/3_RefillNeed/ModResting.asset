@@ -29,4 +29,8 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Resting
   AnimationSet: {fileID: 11400000, guid: 85083cd315a317c42b41bb65113ef9b8, type: 2}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0.05
   NeedbasedState: 0

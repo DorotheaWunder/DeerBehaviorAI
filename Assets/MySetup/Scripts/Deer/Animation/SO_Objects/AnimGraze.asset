@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c966277fd9e193b48b52839092bf6ad3, type: 3}
   m_Name: AnimGraze
   m_EditorClassIdentifier: 
-  EntryAnimation: {fileID: 0}
+  EntryAnimation: {fileID: -8694765766000995129, guid: 209a5c63cb87da240bc8ab25d048b723,
+    type: 3}
   LoopAnimations:
-  - {fileID: 7400020, guid: de9fe0d01d1e94d40955c55ac0b4e5f9, type: 3}
-  ExitAnimation: {fileID: 0}
+  - {fileID: -2591506841216958554, guid: 209a5c63cb87da240bc8ab25d048b723, type: 3}
+  ExitAnimation: {fileID: -438762535572918970, guid: 209a5c63cb87da240bc8ab25d048b723,
+    type: 3}

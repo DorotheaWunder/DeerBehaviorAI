@@ -17,4 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SenseDemo.unity
     guid: ca08a7c571482704abfcd03dd0f6ba51
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 281842adade535e45982eb73fb5c0271,
+      type: 3}

@@ -26,4 +26,9 @@ MonoBehaviour:
     TargetState: {fileID: 11400000, guid: 8c01355c4053a0f40a6d6de0d3b76915, type: 2}
   StateName: Thirsty
   AnimationSet: {fileID: 0}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0.01
+  AllowLoopPause: 0
   NeedbasedState: 2

@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class DeerAnimationController : MonoBehaviour, IFreezable
 {
-    [Header("Animator Reference")]
+ [Header("Animator Reference")]
     public Animator Animator;
 
-    private SO_AnimationSet _currentAnimSet;
-    [SerializeField] private AnimationClip _currentLoop;
+    [Header("Individual Speed Variation")]
+    [SerializeField] private float _individualSpeedMin = 0.8f;
+    [SerializeField] private float _individualSpeedMax = 1.2f;
+    private float _individualSpeedModifier;
+
+    private State _currentState;
+    private Coroutine _stateRoutine;
+    private Coroutine _transitionRoutine;
 
     private void OnEnable()
     {
+        _individualSpeedModifier = Random.Range(_individualSpeedMin, _individualSpeedMax);
+
         var fsm = GetComponent<DeerFSM>();
         if (fsm != null)
             fsm.OnStateChanged += HandleStateChanged;
@@ -26,48 +34,80 @@ public class DeerAnimationController : MonoBehaviour, IFreezable
 
     private void HandleStateChanged(SO_DeerState newState, SO_DeerState previousState)
     {
-        if (newState is State state)
+        if (_transitionRoutine != null)
+            StopCoroutine(_transitionRoutine);
+
+        _transitionRoutine = StartCoroutine(
+            TransitionRoutine(previousState as State, newState as State)
+        );
+    }
+
+    private IEnumerator TransitionRoutine(State previous, State next)
+    {
+        if (previous != null &&
+            previous.AnimationSet != null &&
+            previous.AnimationSet.ExitAnimation != null)
         {
-            _currentAnimSet = state.AnimationSet;
+            yield return PlayAndWait(previous.AnimationSet.ExitAnimation, previous);
+        }
 
-            if (_currentAnimSet?.EntryAnimation != null)
-                PlayAnimation(_currentAnimSet.EntryAnimation);
+        if (_stateRoutine != null)
+        {
+            StopCoroutine(_stateRoutine);
+            _stateRoutine = null;
+        }
 
-            PlayRandomLoop(_currentAnimSet?.LoopAnimations);
+        if (next == null || next.AnimationSet == null)
+            yield break;
+
+        _currentState = next;
+        _stateRoutine = StartCoroutine(StateRoutine(next));
+    }
+
+    private IEnumerator StateRoutine(State state)
+    {
+        var set = state.AnimationSet;
+        
+        if (set.EntryAnimation != null)
+        {
+            yield return PlayAndWait(set.EntryAnimation, state);
+        }
+        
+        while (_currentState == state)
+        {
+            var loops = set.LoopAnimations;
+            if (loops == null || loops.Count == 0)
+                yield break;
+
+            var clip = loops[Random.Range(0, loops.Count)];
+            yield return PlayAndWait(clip, state);
+            
+            float pause = 0f;
+            if (state.AllowLoopPause)
+            {
+                pause = Random.Range(state.MinLoopPause, state.MaxLoopPause);
+            }
+
+            if (pause > 0f)
+                yield return new WaitForSeconds(pause);
         }
     }
 
-    private void Update()
+    private IEnumerator PlayAndWait(AnimationClip clip, State state)
     {
-        if (_currentAnimSet != null && _currentLoop != null && !IsAnimationPlaying(_currentLoop))
-        {
-            PlayRandomLoop(_currentAnimSet.LoopAnimations);
-        }
+        if (clip == null || Animator == null)
+            yield break;
+
+        float speed =
+            Random.Range(state.MinAnimSpeed, state.MaxAnimSpeed) *
+            _individualSpeedModifier;
+
+        Animator.speed = speed;
+        Animator.CrossFade(clip.name, 0f, 0, 0f);
+
+        yield return new WaitForSeconds(clip.length / speed);
     }
 
-    public void PlayAnimation(AnimationClip clip)
-    {
-        if (clip == null || Animator == null) return;
-        Animator.Play(clip.name);
-    }
-
-    public bool IsAnimationPlaying(AnimationClip clip)
-    {
-        if (Animator == null || clip == null) return false;
-        var state = Animator.GetCurrentAnimatorStateInfo(0);
-        return state.IsName(clip.name) && state.normalizedTime < 1f;
-    }
-
-    public void PlayRandomLoop(List<AnimationClip> loops)
-    {
-        if (loops == null || loops.Count == 0) return;
-        int index = Random.Range(0, loops.Count);
-        _currentLoop = loops[index];
-        PlayAnimation(_currentLoop);
-    }
-
-    public AnimationClip CurrentLoop => _currentLoop;
-    
     // ------------------------------------------ Connection to DeerFreezer
     public void OnFreeze()
     {
