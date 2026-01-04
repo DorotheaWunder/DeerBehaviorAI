@@ -8,6 +8,9 @@ public class VisibilityToggle : MonoBehaviour
     [Header("Marker UI")]
     public GameObject MarkerUI;
         
+    [Header("Deer Materials")]
+    public Material DeerMaterial;
+        
     [Header("Sense Materials")]
     public Material VisionMaterial;
     public Material HearingMaterial;
@@ -52,6 +55,10 @@ public class VisibilityToggle : MonoBehaviour
         targetVisionAlpha = VisionAlpha;
         targetHearingAlpha = HearingAlpha;
         MarkerUI.SetActive(true);
+
+        if (DeerMaterial) DeerMaterial.EnableKeyword("_EMISSION");
+        if (VisionMaterial) VisionMaterial.EnableKeyword("_EMISSION");
+        if (HearingMaterial) HearingMaterial.EnableKeyword("_EMISSION");
     }
 
     private void OnHunterSenseReleased(InputAction.CallbackContext ctx)
@@ -59,6 +66,10 @@ public class VisibilityToggle : MonoBehaviour
         targetVisionAlpha = 0f;
         targetHearingAlpha = 0f;
         MarkerUI.SetActive(false);
+        
+        if (DeerMaterial) DeerMaterial.DisableKeyword("_EMISSION");
+        if (VisionMaterial) VisionMaterial.DisableKeyword("_EMISSION");
+        if (HearingMaterial) HearingMaterial.DisableKeyword("_EMISSION");
     }
 
     private void Fade(Material mat, float targetAlpha)
