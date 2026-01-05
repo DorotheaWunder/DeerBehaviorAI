@@ -15,6 +15,9 @@ public class CalculateGoalPosition : SO_StateAction
         if (bb.AnchorPosition == Vector3.zero)
             return;
 
+        if (bb.HasGoal)
+            return;
+
         float radius = Random.Range(MinRadius, MaxRadius);
         Vector2 randomCircle = Random.insideUnitCircle * radius;
 
@@ -22,6 +25,5 @@ public class CalculateGoalPosition : SO_StateAction
         bb.GoalPosition = bb.AnchorPosition + offset;
 
         bb.HasGoal = true;
-        bb.TimeSinceLastWanderPoint = 0f;
     }
 }

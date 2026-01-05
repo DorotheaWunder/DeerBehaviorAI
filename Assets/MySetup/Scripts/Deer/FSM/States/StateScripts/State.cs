@@ -29,6 +29,6 @@ public class State : SO_DeerState
 
     public override void ExitState(DeerFSM deerFSM)
     {
-        //Debug.Log("Exiting State: " + StateName);
+        deerFSM.DeerBlackboard.ClearNavigation();
     }
 }

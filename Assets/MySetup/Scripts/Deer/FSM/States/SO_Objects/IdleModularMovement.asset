@@ -20,19 +20,18 @@ MonoBehaviour:
   DrainMultiplier: 1
   Actions:
   - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
-  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
+  - {fileID: 11400000, guid: 211e2d3ddc2cf1e42850491ee198189f, type: 2}
   - {fileID: 11400000, guid: a71c9a6c21c2a69459ed5abaaa5fa811, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: 28a4d0b1bb127a9448d9ff02b4f88e25, type: 2}
-    TargetState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
-  - Condition: {fileID: 11400000, guid: 0b6a6ead5041bac40864d7f36df618f0, type: 2}
-    TargetState: {fileID: 11400000, guid: 7f0240ee9904be342b350cc83bb48a1a, type: 2}
   - Condition: {fileID: 11400000, guid: 9bd877c9538d50b42a8923542185a7a6, type: 2}
     TargetState: {fileID: 11400000, guid: 2b3555f75e057284e89cc5b5c47ec876, type: 2}
-  - Condition: {fileID: 11400000, guid: 1ee8a9ee573eae741850e3fed20e24cd, type: 2}
+  - Condition: {fileID: 11400000, guid: 63aa0598ae96c25498b764d2296fed94, type: 2}
     TargetState: {fileID: 11400000, guid: 9d5b9596600775b46b42f943ef1784c4, type: 2}
-  - Condition: {fileID: 11400000, guid: 818aac27eab28074da3ab26f52da8bb0, type: 2}
-    TargetState: {fileID: 11400000, guid: ade46b34b94edd140b7f73c4d7b25bef, type: 2}
   StateName: Idle
   AnimationSet: {fileID: 11400000, guid: 7228a360f604a174d885b21f5a2a9172, type: 2}
+  MinAnimSpeed: 0.9
+  MaxAnimSpeed: 1.1
+  MinLoopPause: 0
+  MaxLoopPause: 0.01
+  AllowLoopPause: 1
   NeedbasedState: 0

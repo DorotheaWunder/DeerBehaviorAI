@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HerdCohesionManager : MonoBehaviour
 {
@@ -53,6 +54,27 @@ public class HerdCohesionManager : MonoBehaviour
 
     public bool IsOutsideMaxCenterRange(Transform deer) => DistanceToCenter(deer) > MaxToCenter;
     public bool IsTooFarFromNearestDeer(Transform deer) => DistanceToNearestDeer(deer) > MaxToOtherDeer; 
+    
+    public bool IsTooClose(DeerAI deer)
+    {
+        float distance = DistanceToNearestDeer(deer.transform);
+        return distance < MinToOtherDeer;
+    }
+    
+    public float PersonalSpacePressure(DeerAI deer)
+    {
+        float distance = DistanceToNearestDeer(deer.transform);
+        if (distance >= MaxToOtherDeer) return 0f;
+        if (distance <= MinToOtherDeer) return 1f;
+        return 1f - (distance - MinToOtherDeer) / (MaxToOtherDeer - MinToOtherDeer);
+    }
+    
+    
+    public bool IsApproaching(Transform self, NavMeshAgent otherAgent)
+    {
+        Vector3 toSelf = self.position - otherAgent.transform.position;
+        return Vector3.Dot(otherAgent.velocity.normalized, toSelf.normalized) > 0.5f;
+    }
     
     //------------------------------------------ Boid Section
     public Vector3 GetBoidForce(DeerAI deer)

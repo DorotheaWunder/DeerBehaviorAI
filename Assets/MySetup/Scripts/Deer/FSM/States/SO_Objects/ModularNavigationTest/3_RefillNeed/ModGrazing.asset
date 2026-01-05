@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 7c6c44ed11f707f4a9310475ff0b4658, type: 2}
-    TargetState: {fileID: 11400000, guid: 62dcdb895dcb9744e942262d7dc4804c, type: 2}
+    TargetState: {fileID: 11400000, guid: 23eb53b537b7b4b4b84fdf5c0b32b463, type: 2}
   - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Grazing
@@ -33,4 +33,5 @@ MonoBehaviour:
   MaxAnimSpeed: 1.1
   MinLoopPause: 0
   MaxLoopPause: 0.05
+  AllowLoopPause: 1
   NeedbasedState: 0
