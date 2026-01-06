@@ -2553,6 +2553,7 @@ MonoBehaviour:
   StateManager: {fileID: 302797526}
   CohesionManager: {fileID: 302797525}
   NeedManager: {fileID: 302797527}
+  HerdBB: {fileID: 0}
   CurrentPOI: {fileID: 0}
   AnchorPosition: {x: 0, y: 0, z: 0}
   GoalPosition: {x: 0, y: 0, z: 0}
@@ -2847,7 +2848,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd7e31df01dc5c43bfb0c449eb4d6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 748634784}
+  _currentTarget: {fileID: 748634784}
+  TargetPlayer: {fileID: 748634784}
+  TargetDeer: {fileID: 0}
   offset: {x: 0, y: 5, z: -8}
   rotationSpeed: 5
   pitchMin: -20
@@ -6515,6 +6518,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -6536,9 +6540,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!195 &638472098
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7420,6 +7421,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -7441,9 +7443,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!195 &736411989
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -13703,6 +13702,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -13724,9 +13724,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!195 &1563329992
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14162,6 +14159,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -14183,9 +14181,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!195 &1579756539
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17100,6 +17095,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -17121,9 +17117,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!195 &1984755134
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22853,6 +22846,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -22874,9 +22868,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!1 &5902123918946523983
 GameObject:
   m_ObjectHideFlags: 0
@@ -23419,6 +23410,7 @@ MonoBehaviour:
   DeerBlackboard:
     DeerAI: {fileID: 0}
     Player: {fileID: 0}
+    PlayerPosition: {x: 0, y: 0, z: 0}
     TimePlayerVisible: 0
     HasLineOfSight: 0
     MovementIntent: 0
@@ -23440,9 +23432,6 @@ MonoBehaviour:
   _isOverridden: 0
   _returnState: {fileID: 11400000, guid: 6ada0478e2ea6394bb93fe1bb87549a2, type: 2}
   FleeState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  MigrateMeadowState: {fileID: 0}
-  MigrateStreamState: {fileID: 0}
-  MigrateShelterState: {fileID: 0}
 --- !u!1 &6794490012385524565
 GameObject:
   m_ObjectHideFlags: 0
