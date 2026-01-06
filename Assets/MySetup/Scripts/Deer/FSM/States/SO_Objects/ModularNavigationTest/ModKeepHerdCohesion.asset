@@ -10,28 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: ModResting
+  m_Name: ModKeepHerdCohesion
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
   MinTransitionTime: 0.01
   MaxTransitionTime: 0.7
-  DrainMultiplier: 0
+  DrainMultiplier: 1
   Actions:
-  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
-  - {fileID: 11400000, guid: 11dcbf76003a4b5448ea6dbc2cd2853e, type: 2}
-  - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
+  - {fileID: 11400000, guid: 823962ab4276b7142b77886f71c0c7cd, type: 2}
+  - {fileID: 11400000, guid: 79e43cf31537e8a428588a5ca8c63bfb, type: 2}
+  - {fileID: 11400000, guid: e4d6f58f9b6866b40a20793ea01bb41a, type: 2}
+  - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: 45f6d1f26acef2b46b563512a1780226, type: 2}
+  - Condition: {fileID: 11400000, guid: 0fec7d17c540c0345815a50f951eea03, type: 2}
     TargetState: {fileID: 11400000, guid: 23eb53b537b7b4b4b84fdf5c0b32b463, type: 2}
-  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
-    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  StateName: Resting
-  AnimationSet: {fileID: 11400000, guid: 85083cd315a317c42b41bb65113ef9b8, type: 2}
+  StateName: Going to Herd
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   MinAnimSpeed: 0.9
   MaxAnimSpeed: 1.1
   MinLoopPause: 0
-  MaxLoopPause: 0.05
-  AllowLoopPause: 1
+  MaxLoopPause: 0
+  AllowLoopPause: 0
   NeedbasedState: 0

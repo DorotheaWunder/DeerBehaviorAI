@@ -8,8 +8,11 @@ public class DeerMovementManager : MonoBehaviour
 {
     public DeerFSM FSM;
     public NavMeshAgent Agent;
-    
+
     private DeerBlackboard BB => FSM.DeerBlackboard;
+
+    private Vector3 _lastDestination;
+    private bool _hasSetDestination;
 
     private void Awake()
     {
@@ -17,154 +20,120 @@ public class DeerMovementManager : MonoBehaviour
         if (!Agent) Agent = GetComponent<NavMeshAgent>();
     }
 
+    private void Start()
+    {
+        Agent.obstacleAvoidanceType = ObstacleAvoidanceType.HighQualityObstacleAvoidance;
+        Agent.avoidancePriority = Random.Range(30, 70);
+
+        Agent.speed *= Random.Range(0.9f, 1.1f);
+
+        _hasSetDestination = false;
+    }
+
     private void Update()
     {
-        if (!BB.HasGoal && BB.MovementIntent != MovementIntent.Stop)
-            return;
-
         switch (BB.MovementIntent)
         {
             case MovementIntent.MoveToPosition:
-                MoveToPosition();
+                HandleMoveToPosition();
                 break;
 
             case MovementIntent.MoveTowards:
-                MoveTowards();
+                HandleMoveTowards();
                 break;
 
             case MovementIntent.MoveAway:
-                MoveAway();
+                HandleMoveAway();
                 break;
 
             case MovementIntent.Stop:
-                Stop();
+                HandleStop();
+                break;
+
+            case MovementIntent.None:
+            default:
                 break;
         }
-        
-        ApplyMovementYielding();
-        ApplyIdleYielding();
     }
 
-    private void MoveToPosition()
+    private void HandleMoveToPosition()
     {
-        if (NeedsRepath(BB.GoalPosition))
-            Agent.SetDestination(BB.GoalPosition);
+        if (!BB.HasGoal)
+            return;
 
-        float distance = Vector3.Distance(transform.position, BB.GoalPosition);
-        if (distance < 1f) 
+        if (!_hasSetDestination || NeedsRepath(BB.GoalPosition))
+        {
+            Agent.SetDestination(BB.GoalPosition);
+            _lastDestination = BB.GoalPosition;
+            _hasSetDestination = true;
+            BB.HasDestination = true;
+        }
+        
+        if (!Agent.pathPending &&
+            Agent.remainingDistance <= Agent.stoppingDistance)
         {
             BB.HasArrived = true;
             BB.HasDestination = false;
             BB.MovementIntent = MovementIntent.None;
+
+            _hasSetDestination = false;
         }
         else
         {
-            BB.HasArrived = false;       
+            BB.HasArrived = false;
         }
     }
-    
-    private void MoveTowards()
+
+    private void HandleMoveTowards()
     {
-        Vector3 target = transform.position + BB.GoalDirection * 5f * -1;
-        Agent.SetDestination(target);
+        if (BB.GoalDirection == Vector3.zero)
+            return;
+
+        Vector3 target = transform.position + BB.GoalDirection.normalized * 5f;
+
+        if (!_hasSetDestination || NeedsRepath(target))
+        {
+            Agent.SetDestination(target);
+            _lastDestination = target;
+            _hasSetDestination = true;
+        }
     }
 
-    private void MoveAway()
+    private void HandleMoveAway()
     {
-        Vector3 target = transform.position + BB.GoalDirection * 5f;
-        Agent.SetDestination(target);
+        if (BB.GoalDirection == Vector3.zero)
+            return;
+
+        Vector3 target = transform.position - BB.GoalDirection.normalized * 5f;
+
+        if (!_hasSetDestination || NeedsRepath(target))
+        {
+            Agent.SetDestination(target);
+            _lastDestination = target;
+            _hasSetDestination = true;
+        }
     }
 
-    private void Stop()
+    private void HandleStop()
     {
-        Agent.ResetPath();
+        if (Agent.hasPath)
+            Agent.ResetPath();
+
         BB.HasDestination = false;
-        BB.TimeAtDestination = 0f;
+        BB.HasArrived = false;
+
+        _hasSetDestination = false;
     }
 
     private bool NeedsRepath(Vector3 newDestination)
     {
-        if (!Agent.hasPath) return true;
-        return Vector3.Distance(Agent.destination, newDestination) > BB.RepathDistanceThreshold;
-    }
-    
-    private void ApplyMovementYielding()
-    {
-        if (BB.MovementIntent == MovementIntent.Stop) return;
+        if (!Agent.hasPath)
+            return true;
 
-        HerdCohesionManager herd = BB.DeerAI?.Herd?.CohesionManager;
-        if (herd == null) return;
+        if (Agent.pathStatus != NavMeshPathStatus.PathComplete)
+            return true;
 
-        float lateralOffset = 0f;
-        Vector3 yieldDirection = Vector3.zero;
-
-        foreach (var other in BB.DeerAI.Herd.DeerList)
-        {
-            if (other == BB.DeerAI) continue;
-
-            Vector3 toOther = other.transform.position - transform.position;
-            float distance = toOther.magnitude;
-
-            if (distance < herd.MinToOtherDeer)
-            {
-                Vector3 moveDir = Agent.velocity.normalized;
-                Vector3 perp = Vector3.Cross(Vector3.up, moveDir).normalized;
-
-                float side = Vector3.Dot(perp, toOther) > 0 ? 1f : -1f;
-
-                float strength = (herd.MinToOtherDeer - distance) / herd.MinToOtherDeer;
-
-                yieldDirection += perp * side * strength;
-            }
-        }
-
-        if (yieldDirection != Vector3.zero)
-        {
-            Vector3 nudge = yieldDirection.normalized * 0.5f;
-            Agent.velocity += nudge;
-            Agent.velocity *= 0.9f;
-        }
-    }
-    
-    private void ApplyIdleYielding()
-    {
-        if (BB.MovementIntent != MovementIntent.Stop)
-            return;
-
-        HerdCohesionManager herd = BB.DeerAI?.Herd?.CohesionManager;
-        if (herd == null) return;
-
-        Vector3 totalOffset = Vector3.zero;
-
-        foreach (var other in BB.DeerAI.Herd.DeerList)
-        {
-            if (other == BB.DeerAI) continue;
-
-            NavMeshAgent otherAgent = other.GetComponent<NavMeshAgent>();
-            if (otherAgent == null || otherAgent.velocity.sqrMagnitude < 0.01f)
-                continue;
-
-            float distance = Vector3.Distance(transform.position, other.transform.position);
-            if (distance > herd.MinToOtherDeer)
-                continue;
-            
-            if (!herd.IsApproaching(transform, otherAgent))
-                continue;
-            
-            Vector3 moveDir = otherAgent.velocity.normalized;
-            Vector3 toSelf = transform.position - other.transform.position;
-
-            Vector3 lateral = Vector3.Cross(Vector3.up, moveDir).normalized;
-            float side = Vector3.Dot(lateral, toSelf) > 0 ? 1f : -1f;
-
-            float strength = (herd.MinToOtherDeer - distance) / herd.MinToOtherDeer;
-
-            totalOffset += lateral * side * strength;
-        }
-
-        if (totalOffset != Vector3.zero)
-        {
-            transform.position += totalOffset.normalized * Time.deltaTime * 0.5f;
-        }
+        float dist = Vector3.Distance(_lastDestination, newDestination);
+        return dist > BB.RepathDistanceThreshold;
     }
 }

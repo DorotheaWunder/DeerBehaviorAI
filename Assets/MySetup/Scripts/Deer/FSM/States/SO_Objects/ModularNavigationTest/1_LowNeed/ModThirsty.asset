@@ -20,15 +20,16 @@ MonoBehaviour:
   DrainMultiplier: 0
   Actions:
   - {fileID: 11400000, guid: 0fbbe4eed3791254a842bcc672f41695, type: 2}
-  - {fileID: 11400000, guid: 86df4b87916f86d4aa71b42ba3f5ebd8, type: 2}
+  - {fileID: 11400000, guid: a13fd08d8e04b8c4eb49aafaf44f8eac, type: 2}
   - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
+  - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 46d84d81f6efae44a9af53f3dbe0a919, type: 2}
     TargetState: {fileID: 11400000, guid: 255bceff256bc83469335dbb6fd0edac, type: 2}
   - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
     TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
   StateName: Thirsty
-  AnimationSet: {fileID: 0}
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   MinAnimSpeed: 0.9
   MaxAnimSpeed: 1.1
   MinLoopPause: 0

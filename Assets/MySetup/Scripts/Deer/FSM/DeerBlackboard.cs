@@ -9,6 +9,7 @@ public class DeerBlackboard
     
     [Header("Player Detection")]
     public Transform Player;
+    public Vector3 PlayerPosition;
     public float TimePlayerVisible;
     public bool HasLineOfSight;
 

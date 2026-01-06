@@ -9,6 +9,7 @@ public class HerdManager : MonoBehaviour
     public HerdStateManager StateManager;
     public HerdCohesionManager CohesionManager;
     public HerdNeedManager NeedManager;
+    public HerdBlackboard HerdBB = new HerdBlackboard();
     
     [Header("Herd Movement")]
     public Transform CurrentPOI;

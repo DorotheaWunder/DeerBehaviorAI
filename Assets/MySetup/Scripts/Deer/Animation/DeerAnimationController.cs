@@ -10,7 +10,7 @@ public class DeerAnimationController : MonoBehaviour, IFreezable
     [Header("Individual Speed Variation")]
     [SerializeField] private float _individualSpeedMin = 0.8f;
     [SerializeField] private float _individualSpeedMax = 1.2f;
-    private float _individualSpeedModifier;
+    [SerializeField] private float _individualSpeedModifier;
 
     private State _currentState;
     private Coroutine _stateRoutine;

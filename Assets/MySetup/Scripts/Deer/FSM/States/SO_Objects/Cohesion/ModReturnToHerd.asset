@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: MigrateToShelter
+  m_Name: ModReturnToHerd
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
-  MinTransitionTime: 0.01
-  MaxTransitionTime: 0.7
+  MinTransitionTime: 0.2
+  MaxTransitionTime: 1
   DrainMultiplier: 1
   Actions:
-  - {fileID: 11400000, guid: 9aec46b4f5ab3314fa6f21cfe4ae9631, type: 2}
-  - {fileID: 11400000, guid: cca28a4f2801ac9408fdb6d3b6bc825f, type: 2}
-  - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
+  - {fileID: 11400000, guid: 6a3eb686f20eab645bfc290db32d2a8d, type: 2}
+  - {fileID: 11400000, guid: 79e43cf31537e8a428588a5ca8c63bfb, type: 2}
+  - {fileID: 11400000, guid: e4d6f58f9b6866b40a20793ea01bb41a, type: 2}
   - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: b6c0531064f4f704987d9f4e6b9d7c50, type: 2}
-    TargetState: {fileID: 11400000, guid: 02a4c11bde9cb8647ae2763ea13f099f, type: 2}
-  StateName: Migrating to Shelter
+  - Condition: {fileID: 11400000, guid: 0fec7d17c540c0345815a50f951eea03, type: 2}
+    TargetState: {fileID: 11400000, guid: 23eb53b537b7b4b4b84fdf5c0b32b463, type: 2}
+  StateName: Return to Herd
   AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   MinAnimSpeed: 0.9
   MaxAnimSpeed: 1.1
   MinLoopPause: 0
-  MaxLoopPause: 0
+  MaxLoopPause: 0.05
   AllowLoopPause: 0
-  NeedbasedState: 3
+  NeedbasedState: 0

@@ -10,28 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a29f52e5f106e2242a408aba7edb471e, type: 3}
-  m_Name: ModResting
+  m_Name: ModKeepDeerCohesion
   m_EditorClassIdentifier: 
   MinDuration: 1
   MaxDuration: 1
   UpdateInterval: 0.1
   MinTransitionTime: 0.01
   MaxTransitionTime: 0.7
-  DrainMultiplier: 0
+  DrainMultiplier: 1
   Actions:
-  - {fileID: 11400000, guid: 5417ba1c93112e74e81734cdf6fd4e04, type: 2}
-  - {fileID: 11400000, guid: 11dcbf76003a4b5448ea6dbc2cd2853e, type: 2}
-  - {fileID: 11400000, guid: fc2ddda2bef5cdf40878edbd44263f21, type: 2}
+  - {fileID: 11400000, guid: 6e1f9fa9d20d0dc4d830fa49107b5a78, type: 2}
+  - {fileID: 11400000, guid: a13fd08d8e04b8c4eb49aafaf44f8eac, type: 2}
+  - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
+  - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
-  - Condition: {fileID: 11400000, guid: 45f6d1f26acef2b46b563512a1780226, type: 2}
+  - Condition: {fileID: 11400000, guid: 7f0b0f1f8157788438dd9c26dc922ffd, type: 2}
     TargetState: {fileID: 11400000, guid: 23eb53b537b7b4b4b84fdf5c0b32b463, type: 2}
-  - Condition: {fileID: 11400000, guid: ca6237e75b2606a429b93e6f6e714702, type: 2}
-    TargetState: {fileID: 11400000, guid: f23a33a6d6783ba4799f74bd6b645919, type: 2}
-  StateName: Resting
-  AnimationSet: {fileID: 11400000, guid: 85083cd315a317c42b41bb65113ef9b8, type: 2}
+  StateName: Goign to Deer
+  AnimationSet: {fileID: 11400000, guid: a77cadc86aad1d8468f91b0cc5ecbf40, type: 2}
   MinAnimSpeed: 0.9
   MaxAnimSpeed: 1.1
   MinLoopPause: 0
-  MaxLoopPause: 0.05
-  AllowLoopPause: 1
+  MaxLoopPause: 0
+  AllowLoopPause: 0
   NeedbasedState: 0

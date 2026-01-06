@@ -121,6 +121,30 @@ public class HerdCohesionManager : MonoBehaviour
         return boidForce;
     }
     
+    public Vector3 GetHerdFleeDirection(Vector3 threatPosition)
+    {
+        Vector3 dir = HerdCenter.position - threatPosition;
+        dir.y = 0f;
+
+        if (dir.sqrMagnitude < 0.001f)
+            return Vector3.zero;
+
+        return dir.normalized;
+    }
+    
+    public Vector3 GetHerdTarget(DeerAI deer)
+    {
+        if (_herdManager.HerdBB == null || !_herdManager.HerdBB.HasGoal)
+            return deer.transform.position;
+
+        Vector3 herdGoal = _herdManager.HerdBB.GoalPosition;
+        Vector3 goalDir = (herdGoal - deer.transform.position).normalized;
+        Vector3 boidForce = GetBoidForce(deer);
+        Vector3 finalDir = (goalDir + boidForce).normalized;
+
+        return deer.transform.position + finalDir * 5f;
+    }
+    
     //----------------------------------- Gizmos
     private void OnDrawGizmos()
     {

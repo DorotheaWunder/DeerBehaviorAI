@@ -19,8 +19,10 @@ MonoBehaviour:
   MaxTransitionTime: 0.7
   DrainMultiplier: 1
   Actions:
-  - {fileID: 11400000, guid: c59346b20fc346340bf5bb35ae08c21d, type: 2}
-  - {fileID: 11400000, guid: a9132ff3ddd405045a08f8e1080da9a2, type: 2}
+  - {fileID: 11400000, guid: e0ff98d9470e5a744a17432ed7e75126, type: 2}
+  - {fileID: 11400000, guid: cca28a4f2801ac9408fdb6d3b6bc825f, type: 2}
+  - {fileID: 11400000, guid: 98a6aa19b87d0a549ab00794ebb1593a, type: 2}
+  - {fileID: 11400000, guid: de198994d0d4c1448b71d6088fdc1012, type: 2}
   Transitions:
   - Condition: {fileID: 11400000, guid: 46d84d81f6efae44a9af53f3dbe0a919, type: 2}
     TargetState: {fileID: 11400000, guid: b56bf5eafe6b4e3479a6ed79ef7ee696, type: 2}
