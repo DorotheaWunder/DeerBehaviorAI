@@ -26,9 +26,9 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
 
     [Header("Herd States")]
     [SerializeField] private SO_DeerState FleeState;
-    [SerializeField] private SO_DeerState MigrateMeadowState;
-    [SerializeField] private SO_DeerState MigrateStreamState;
-    [SerializeField] private SO_DeerState MigrateShelterState;
+    // [SerializeField] private SO_DeerState MigrateMeadowState;
+    // [SerializeField] private SO_DeerState MigrateStreamState;
+    // [SerializeField] private SO_DeerState MigrateShelterState;
 
     private void OnEnable()
     {
@@ -143,17 +143,17 @@ public class DeerFSM : MonoBehaviour, ITickable, IFreezable
             case HerdState.Fleeing:
                 OverwriteState(FleeState);
                 break;
-            case HerdState.MigrateMeadow:
-                OverwriteState(MigrateMeadowState);
-                break;
-            
-            case HerdState.MigrateStream:
-                OverwriteState(MigrateStreamState);
-                break;
-            
-            case HerdState.MigrateShelter:
-                OverwriteState(MigrateShelterState);
-                break;
+            // case HerdState.MigrateMeadow:
+            //     OverwriteState(MigrateMeadowState);
+            //     break;
+            //
+            // case HerdState.MigrateStream:
+            //     OverwriteState(MigrateStreamState);
+            //     break;
+            //
+            // case HerdState.MigrateShelter:
+            //     OverwriteState(MigrateShelterState);
+            //     break;
             
             case HerdState.Normal:
                 ClearOverride();
